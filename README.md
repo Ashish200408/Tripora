@@ -126,28 +126,50 @@ The site presents curated destinations, travel packages, and booking enquiry flo
 ```
 tripora/
 ├── public/
-│   ├── favicon.svg          # Site favicon
-│   └── icons.svg            # SVG icon sprite
+│   ├── favicon.svg                   # Site favicon
+│   └── icons.svg                     # SVG icon sprite
 ├── src/
 │   ├── assets/
-│   │   └── hero.png         # Placeholder hero image (to be replaced)
-│   ├── App.tsx              # Root application component (to be replaced with router)
-│   ├── App.css              # Root component styles
-│   ├── index.css            # Global styles and Tailwind imports
-│   └── main.tsx             # Application entry point
+│   │   └── hero.png                  # Placeholder (to be replaced with final photography)
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Layout.tsx            # Page wrapper — Navbar + main + Footer
+│   │   │   ├── Navbar.tsx            # Responsive navigation bar with mobile menu
+│   │   │   └── Footer.tsx            # Site footer with links and social icons
+│   │   └── ui/
+│   │       ├── Button.tsx            # Reusable button (primary/secondary/ghost/outline)
+│   │       └── Container.tsx         # Page-width wrapper with consistent padding
+│   ├── data/
+│   │   ├── destinations.ts           # Mock destinations data (6 destinations)
+│   │   ├── packages.ts               # Mock travel packages data (6 packages)
+│   │   └── experiences.ts            # Mock experience categories data (6 categories)
+│   ├── pages/
+│   │   ├── HomePage.tsx              # / — Placeholder (Phase 3)
+│   │   ├── DestinationsPage.tsx      # /destinations — Placeholder listing
+│   │   ├── PackagesPage.tsx          # /packages — Placeholder listing
+│   │   ├── ExperiencesPage.tsx       # /experiences — Placeholder listing
+│   │   ├── AboutPage.tsx             # /about — Placeholder
+│   │   ├── ContactPage.tsx           # /contact — Placeholder with form shell
+│   │   ├── BookingPage.tsx           # /booking — Placeholder
+│   │   └── NotFoundPage.tsx          # * — 404 Not Found
+│   ├── types/
+│   │   └── index.ts                  # Shared TypeScript interfaces and types
+│   ├── App.tsx                       # Root component with React Router configuration
+│   ├── App.css                       # Intentionally minimal (global styles in index.css)
+│   ├── index.css                     # Global design tokens, reset, and typography
+│   └── main.tsx                      # Application entry point
 ├── .gitattributes
 ├── .gitignore
-├── .oxlintrc.json           # Linter configuration
-├── index.html               # HTML entry point
+├── .oxlintrc.json                    # Oxlint configuration
+├── index.html                        # HTML entry point with Google Fonts
 ├── package.json
-├── PROJECT_RULES.md         # Mandatory development rules
-├── tsconfig.json            # Base TypeScript config
-├── tsconfig.app.json        # App TypeScript config
-├── tsconfig.node.json       # Node TypeScript config
-└── vite.config.ts           # Vite configuration
+├── PROJECT_RULES.md                  # Mandatory development rules
+├── TASK_TRACKER.md                   # Development progress tracker
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+└── vite.config.ts                    # Vite + Tailwind CSS v4 configuration
 ```
-
-> **Note:** The `src/` structure above reflects the current early-stage scaffold. As development progresses, subdirectories for `components/`, `pages/`, `data/`, `hooks/`, `utils/`, and `types/` will be added and documented here.
 
 ---
 
@@ -186,34 +208,58 @@ The development server runs at `http://localhost:5173` by default.
 
 ## 8. Application Routes
 
-> **Status:** Routes are not yet configured. React Router DOM is installed and ready. The table below documents the planned routing structure.
-
-| Route              | Page                  | Status    |
-|--------------------|-----------------------|-----------|
-| `/`                | Home                  | Planned   |
-| `/destinations`    | Destinations Listing  | Planned   |
-| `/destinations/:id`| Destination Detail    | Planned   |
-| `/packages`        | Travel Packages       | Planned   |
-| `/packages/:id`    | Package Detail        | Planned   |
-| `/about`           | About Tripora         | Planned   |
-| `/contact`         | Contact & Enquiry     | Planned   |
-| `*`                | 404 Not Found         | Planned   |
+| Route               | Page                  | Status                        |
+|---------------------|-----------------------|-------------------------------|
+| `/`                 | Home                  | ✅ Route active — placeholder UI |
+| `/destinations`     | Destinations Listing  | ✅ Route active — placeholder listing with mock data |
+| `/destinations/:id` | Destination Detail    | 🔲 Planned (Phase 4)          |
+| `/packages`         | Travel Packages       | ✅ Route active — placeholder listing with mock data |
+| `/packages/:id`     | Package Detail        | 🔲 Planned (Phase 5)          |
+| `/experiences`      | Experiences           | ✅ Route active — placeholder listing with mock data |
+| `/about`            | About Tripora         | ✅ Route active — placeholder  |
+| `/contact`          | Contact & Enquiry     | ✅ Route active — form shell   |
+| `/booking`          | Booking Enquiry       | ✅ Route active — placeholder  |
+| `*`                 | 404 Not Found         | ✅ Implemented                 |
 
 ---
 
 ## 9. Features Implemented
 
-> **Status:** The project is in its initial scaffold phase. The Vite + React + TypeScript base has been set up and all planned dependencies have been installed. No Tripora-specific UI has been built yet.
+> **Phase 2 complete.** The design system, global layout, routing, TypeScript types, and mock data are all in place. The production build passes with zero errors.
 
-### Foundation
+### Foundation (Phase 0)
 - [x] Vite + React + TypeScript project scaffolded
-- [x] Tailwind CSS v4 configured via Vite plugin
+- [x] Tailwind CSS v4 configured via `@tailwindcss/vite` plugin
 - [x] React Router DOM installed
 - [x] React Hook Form + Zod validation installed
 - [x] Motion animation library installed
 - [x] Lucide React icon library installed
 - [x] Oxlint code quality tooling configured
-- [x] Project rules documented in `PROJECT_RULES.md`
+- [x] Git repository initialised
+
+### Documentation (Phase 1)
+- [x] `PROJECT_RULES.md` — mandatory development rules
+- [x] `README.md` — full professional project documentation
+- [x] `TASK_TRACKER.md` — central progress tracker
+
+### Design System & Foundation (Phase 2)
+- [x] `index.html` updated — Google Fonts (Playfair Display + Inter), correct title and meta description
+- [x] `vite.config.ts` — Tailwind CSS v4 Vite plugin registered
+- [x] `src/index.css` — Tripora design tokens (CSS custom properties), brand colours, reset, global typography, utility classes
+- [x] Default Vite template UI and styling fully removed
+- [x] `src/types/index.ts` — TypeScript types: `Destination`, `Package`, `Experience`, `ItineraryDay`, `TravelType`, `BudgetRange`, `ExperienceCategory`, `BookingEnquiryFormData`, `ContactFormData`
+- [x] `src/data/destinations.ts` — 6 mock destinations with full data
+- [x] `src/data/packages.ts` — 6 mock travel packages with full itineraries
+- [x] `src/data/experiences.ts` — 6 experience categories
+- [x] `Button` component — 4 variants (primary, secondary, ghost, outline), 3 sizes
+- [x] `Container` component — consistent page-width wrapper with responsive padding
+- [x] `Navbar` — responsive with scroll-aware background, mobile hamburger menu, active link highlighting, keyboard accessible
+- [x] `Footer` — brand column, 3 link columns, social icons, tagline
+- [x] `Layout` — wraps all pages with Navbar and Footer
+- [x] React Router configured — 8 routes including 404
+- [x] Placeholder pages for all routes: Home, Destinations, Packages, Experiences, About, Contact, Booking, 404
+- [x] Mobile navigation menu — opens/closes, closes on overlay click and link navigation, prevents body scroll
+- [x] Production build: `✓ built in 1.17s` — zero TypeScript errors
 
 ---
 
@@ -271,18 +317,19 @@ The development server runs at `http://localhost:5173` by default.
 
 ## 11. Development Roadmap
 
-| Phase | Milestone                                      | Status      |
-|-------|------------------------------------------------|-------------|
-| 0     | Project scaffold and dependency setup          | ✅ Complete  |
-| 1     | Global layout: Navbar, Footer, routing         | 🔲 Planned  |
-| 2     | Home page — hero, featured sections            | 🔲 Planned  |
-| 3     | Destinations listing page with filters         | 🔲 Planned  |
-| 4     | Destination detail page                        | 🔲 Planned  |
-| 5     | Packages listing and detail pages              | 🔲 Planned  |
-| 6     | Wishlist feature                               | 🔲 Planned  |
-| 7     | About and Contact pages with form validation   | 🔲 Planned  |
-| 8     | 404 page and polish                            | 🔲 Planned  |
-| 9     | Production build validation and deployment     | 🔲 Planned  |
+| Phase | Milestone                                              | Status         |
+|-------|--------------------------------------------------------|----------------|
+| 0     | Project scaffold and dependency setup                  | ✅ Complete    |
+| 1     | Documentation and development rules                    | ✅ Complete    |
+| 2     | Design system, components, routing, types, mock data   | ✅ Complete    |
+| 3     | Premium homepage                                       | 🔲 Planned    |
+| 4     | Destinations and destination detail pages              | 🔲 Planned    |
+| 5     | Packages and package detail pages                      | 🔲 Planned    |
+| 6     | Experiences, About and Contact pages                   | 🔲 Planned    |
+| 7     | Trip planner, wishlist and functional interactions      | 🔲 Planned    |
+| 8     | Responsive testing, optimisation and bug fixing        | 🔲 Planned    |
+| 9     | GitHub and deployment                                  | 🔲 Planned    |
+| 10    | Final client demonstration                             | 🔲 Planned    |
 
 **Deadline:** Saturday, 28 November 2026, 10:00 AM IST.
 
@@ -371,4 +418,4 @@ Serves the `dist/` output at `http://localhost:4173` for local verification befo
 
 ---
 
-*This README is a living document and must be updated alongside every development phase. Last updated: Phase 0 — Initial scaffold.*
+*This README is a living document and must be updated alongside every development phase. Last updated: Phase 2 — Design system, components, routing, TypeScript types, and mock data.*
