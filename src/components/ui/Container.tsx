@@ -22,7 +22,7 @@ export default function Container({
 
   return (
     <Tag
-      className={`${widthClass} mx-auto w-full px-5 sm:px-8 lg:px-12 ${className}`}
+      className={`${widthClass} mx-auto w-full px-6 sm:px-10 lg:px-16 ${className}`}
     >
       {children}
     </Tag>

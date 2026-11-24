@@ -6,7 +6,7 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react'
 // Sizes:    sm | md | lg
 // =========================================================
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'outline'
+type Variant = 'primary' | 'secondary' | 'ghost' | 'outline' | 'outline-light'
 type Size = 'sm' | 'md' | 'lg'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -30,6 +30,8 @@ const variantStyles: Record<Variant, string> = {
     'bg-transparent text-[#142A32] border-transparent hover:bg-[#142A32]/8 focus-visible:outline-[#142A32]',
   outline:
     'bg-transparent text-[#142A32] border-[#142A32]/30 hover:border-[#142A32] hover:bg-[#142A32]/5 focus-visible:outline-[#142A32]',
+  'outline-light':
+    'bg-transparent text-[#F8F7F3] border-[#E9E2D5]/55 hover:border-[#F8F7F3] hover:bg-[#F8F7F3]/12 focus-visible:outline-[#F8F7F3]',
 }
 
 const sizeStyles: Record<Size, string> = {

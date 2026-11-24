@@ -132,19 +132,21 @@ tripora/
 │   ├── assets/
 │   │   └── hero.png                  # Placeholder (to be replaced with final photography)
 │   ├── components/
+│   │   ├── home/
+│   │   │   └── HeroSection.tsx       # Full-width cinematic homepage hero
 │   │   ├── layout/
 │   │   │   ├── Layout.tsx            # Page wrapper — Navbar + main + Footer
 │   │   │   ├── Navbar.tsx            # Responsive navigation bar with mobile menu
 │   │   │   └── Footer.tsx            # Site footer with links and social icons
 │   │   └── ui/
-│   │       ├── Button.tsx            # Reusable button (primary/secondary/ghost/outline)
+│   │       ├── Button.tsx            # Reusable button (primary/secondary/ghost/outline/outline-light)
 │   │       └── Container.tsx         # Page-width wrapper with consistent padding
 │   ├── data/
 │   │   ├── destinations.ts           # Mock destinations data (6 destinations)
 │   │   ├── packages.ts               # Mock travel packages data (6 packages)
 │   │   └── experiences.ts            # Mock experience categories data (6 categories)
 │   ├── pages/
-│   │   ├── HomePage.tsx              # / — Placeholder (Phase 3)
+│   │   ├── HomePage.tsx              # / — Cinematic hero (remaining sections in progress)
 │   │   ├── DestinationsPage.tsx      # /destinations — Placeholder listing
 │   │   ├── PackagesPage.tsx          # /packages — Placeholder listing
 │   │   ├── ExperiencesPage.tsx       # /experiences — Placeholder listing
@@ -261,6 +263,9 @@ The development server runs at `http://localhost:5173` by default.
 - [x] Mobile navigation menu — opens/closes, closes on overlay click and link navigation, prevents body scroll
 - [x] Production build: `✓ built in 1.17s` — zero TypeScript errors
 
+### Homepage — Phase 3A (In Progress)
+- [x] `HeroSection` — full-width cinematic hero (`82–88vh`), destination photography with image-error gradient fallback, directional dark overlays, `Playfair Display` + `Inter` editorial typography, Motion entrance animations (respecting `prefers-reduced-motion`), and working CTAs to `/destinations` and `/packages`
+
 ---
 
 ## 10. Planned Pages & Functionality
@@ -322,7 +327,7 @@ The development server runs at `http://localhost:5173` by default.
 | 0     | Project scaffold and dependency setup                  | ✅ Complete    |
 | 1     | Documentation and development rules                    | ✅ Complete    |
 | 2     | Design system, components, routing, types, mock data   | ✅ Complete    |
-| 3     | Premium homepage                                       | 🔲 Planned    |
+| 3     | Premium homepage                                       | 🔄 In Progress |
 | 4     | Destinations and destination detail pages              | 🔲 Planned    |
 | 5     | Packages and package detail pages                      | 🔲 Planned    |
 | 6     | Experiences, About and Contact pages                   | 🔲 Planned    |

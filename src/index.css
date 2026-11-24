@@ -43,13 +43,7 @@
   --radius-lg:  16px;
 }
 
-/* ----- CSS Reset & Base --------------------------------- */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+/* ----- Base Typography & Elements ----------------------- */
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
