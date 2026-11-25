@@ -133,7 +133,8 @@ tripora/
 │   │   └── hero.png                  # Placeholder (to be replaced with final photography)
 │   ├── components/
 │   │   ├── home/
-│   │   │   └── HeroSection.tsx       # Full-width cinematic homepage hero
+│   │   │   ├── HeroSection.tsx       # Full-width cinematic homepage hero
+│   │   │   └── TravelSearch.tsx      # Interactive journey search panel
 │   │   ├── layout/
 │   │   │   ├── Layout.tsx            # Page wrapper — Navbar + main + Footer
 │   │   │   ├── Navbar.tsx            # Responsive navigation bar with mobile menu
@@ -146,7 +147,7 @@ tripora/
 │   │   ├── packages.ts               # Mock travel packages data (6 packages)
 │   │   └── experiences.ts            # Mock experience categories data (6 categories)
 │   ├── pages/
-│   │   ├── HomePage.tsx              # / — Cinematic hero (remaining sections in progress)
+│   │   ├── HomePage.tsx              # / — Cinematic hero + TravelSearch (remaining sections in progress)
 │   │   ├── DestinationsPage.tsx      # /destinations — Placeholder listing
 │   │   ├── PackagesPage.tsx          # /packages — Placeholder listing
 │   │   ├── ExperiencesPage.tsx       # /experiences — Placeholder listing
@@ -263,8 +264,9 @@ The development server runs at `http://localhost:5173` by default.
 - [x] Mobile navigation menu — opens/closes, closes on overlay click and link navigation, prevents body scroll
 - [x] Production build: `✓ built in 1.17s` — zero TypeScript errors
 
-### Homepage — Phase 3A (In Progress)
+### Homepage — Phase 3A & 3B (In Progress)
 - [x] `HeroSection` — full-width cinematic hero (`82–88vh`), destination photography with image-error gradient fallback, directional dark overlays, `Playfair Display` + `Inter` editorial typography, Motion entrance animations (respecting `prefers-reduced-motion`), and working CTAs to `/destinations` and `/packages`
+- [x] `TravelSearch` — interactive search panel below the hero with destination dropdown (from `src/data/destinations.ts`), future-only date picker, accessible 1–12 traveller stepper, validation feedback, and navigation to `/packages` with query parameters (`destination`, `date`, `travellers`)
 
 ---
 

@@ -108,12 +108,12 @@ Production build passes (`✓ built in 1.17s`, zero TypeScript errors). Design s
 
 **Status: 🔄 In Progress**
 
-Phase 3A (Cinematic Homepage Hero) is implemented, refined for contrast and typography hierarchy, and verified (`npm run build` passes). Remaining homepage sections are still to be built.
+Phase 3A (Cinematic Homepage Hero) and Phase 3B (Interactive Travel Search) are implemented and verified (`npm run build` passes). Remaining homepage sections are still to be built.
 
 | # | Task | Priority | Status |
 |---|---|---|---|
 | 3.1 | Build full-screen hero section with tagline and CTA button | 🔴 Critical | ✅ Completed (Refined for contrast & spacing) |
-| 3.2 | Add destination search bar to hero section | 🔴 Critical | 🔲 Not Started |
+| 3.2 | Add destination search bar to hero section | 🔴 Critical | ✅ Completed (`TravelSearch` below hero) |
 | 3.3 | Build "Featured Destinations" section | 🔴 Critical | 🔲 Not Started |
 | 3.4 | Build "Featured Packages" section | 🔴 Critical | 🔲 Not Started |
 | 3.5 | Build "Why Tripora" / trust signals section | 🟠 High | 🔲 Not Started |
@@ -359,4 +359,4 @@ Confirm each item is working immediately before the client demonstration.
 
 ---
 
-*This tracker must be updated alongside every completed development task. Last updated: Phase 3A — Fixed CSS reset cascade override on Container padding (24px mobile, 40px tablet, 64px desktop).*
+*This tracker must be updated alongside every completed development task. Last updated: Phase 3B — Interactive TravelSearch component implemented and integrated.*
