@@ -108,7 +108,7 @@ Production build passes (`✓ built in 1.17s`, zero TypeScript errors). Design s
 
 **Status: 🔄 In Progress**
 
-Phase 3A (Cinematic Homepage Hero), Phase 3B (Interactive Travel Search), Phase 3C (Featured Destinations), Phase 3D (Featured Packages), and Phase 3E (Why Choose Tripora) are implemented. Phase 3E was visually verified and the production build passed. Remaining homepage sections are still to be built.
+Phase 3A (Cinematic Homepage Hero), Phase 3B (Interactive Travel Search), Phase 3C (Featured Destinations), Phase 3D (Featured Packages), Phase 3E (Why Choose Tripora), Phase 3F (Testimonials), and Phase 3G (Newsletter) are implemented. Phase 3G is integrated immediately after Testimonials; `npm run build` passes.
 
 | # | Task | Priority | Status |
 |---|---|---|---|
@@ -117,8 +117,8 @@ Phase 3A (Cinematic Homepage Hero), Phase 3B (Interactive Travel Search), Phase 
 | 3.3 | Build "Featured Destinations" section | 🔴 Critical | ✅ Completed (`FeaturedDestinations` — all 6 destinations) |
 | 3.4 | Build "Featured Packages" section | 🔴 Critical | ✅ Completed (`FeaturedPackages` — 3 featured packages) |
 | 3.5 | Build "Why Tripora" / trust signals section | 🟠 High | ✅ Completed — visually verified; `npm run build` passed |
-| 3.6 | Build testimonials section | 🟡 Medium | 🔲 Not Started |
-| 3.7 | Build newsletter subscription prompt section | 🟢 Low | 🔲 Not Started |
+| 3.6 | Build testimonials section | 🟡 Medium | ✅ Completed — integrated after WhyChooseTripora; `npm run build` passed |
+| 3.7 | Build newsletter subscription prompt section | 🟢 Low | ✅ Completed — client-side validation and accessible demo feedback; `npm run build` passed |
 | 3.8 | Add entrance animations with Motion | 🟡 Medium | 🔄 In Progress — Hero entrance animations added |
 | 3.9 | Verify homepage is fully responsive on mobile, tablet, and desktop | 🔴 Critical | 🔲 Not Started |
 | 3.10 | Verify production build passes | 🔴 Critical | ✅ Completed (Phase 3A verified) |
@@ -359,4 +359,4 @@ Confirm each item is working immediately before the client demonstration.
 
 ---
 
-*This tracker must be updated alongside every completed development task. Last updated: Phase 3E — WhyChooseTripora implemented, visually verified, and production build passed.*
+*This tracker must be updated alongside every completed development task. Last updated: Phase 3G — Newsletter demo form implemented and production build passed.*
