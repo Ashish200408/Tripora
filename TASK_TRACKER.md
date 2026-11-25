@@ -128,7 +128,9 @@ Phase 3A (Cinematic Homepage Hero), Phase 3B (Interactive Travel Search), Phase 
 
 ### Phase 4 — Destinations and Destination Details
 
-**Status: 🔲 Not Started**
+**Status: 🔄 In Progress**
+
+Phase 4B implements the reusable `/destinations/:slug` detail page using the existing destination data, displays related packages, and uses the existing not-found page for unknown slugs. All six destination slugs and an invalid slug were browser-checked; `npm run build` passes. Dedicated weather and travel-tip fields are not present in the dataset and are not fabricated.
 
 | # | Task | Priority | Status |
 |---|---|---|---|
@@ -137,14 +139,14 @@ Phase 3A (Cinematic Homepage Hero), Phase 3B (Interactive Travel Search), Phase 
 | 4.3 | Implement filter by region | 🔴 Critical | 🔲 Not Started |
 | 4.4 | Implement filter by travel type | 🟠 High | 🔲 Not Started |
 | 4.5 | Implement filter by budget range | 🟠 High | 🔲 Not Started |
-| 4.6 | Build Destination Detail page with large hero image | 🔴 Critical | 🔲 Not Started |
-| 4.7 | Add destination overview, weather, and travel tips sections | 🟠 High | 🔲 Not Started |
-| 4.8 | Add related packages section on destination detail page | 🟡 Medium | 🔲 Not Started |
-| 4.9 | Add booking enquiry button linking to enquiry flow | 🟠 High | 🔲 Not Started |
-| 4.10 | Verify all destination routes navigate correctly | 🔴 Critical | 🔲 Not Started |
+| 4.6 | Build Destination Detail page with large hero image | 🔴 Critical | ✅ Completed (Phase 4B — data-driven page by slug) |
+| 4.7 | Add destination overview, weather, and travel tips sections | 🟠 High | 🔄 In Progress — overview and existing practical fields displayed; dedicated weather/tips data is unavailable |
+| 4.8 | Add related packages section on destination detail page | 🟡 Medium | ✅ Completed — filtered by `destinationId`, with an empty state |
+| 4.9 | Add booking enquiry button linking to enquiry flow | 🟠 High | ✅ Completed — links to existing `/contact` route |
+| 4.10 | Verify all destination routes navigate correctly | 🔴 Critical | ✅ Completed — all six slugs and an unknown slug checked in browser |
 | 4.11 | Verify responsive layout on all breakpoints | 🔴 Critical | 🔲 Not Started |
-| 4.12 | Verify production build passes | 🔴 Critical | 🔲 Not Started |
-| 4.13 | Update `README.md` | 🔴 Critical | 🔲 Not Started |
+| 4.12 | Verify production build passes | 🔴 Critical | ✅ Completed — `npm run build` passed |
+| 4.13 | Update `README.md` | 🔴 Critical | ✅ Completed — documents `/destinations/:slug` |
 
 ---
 
@@ -359,4 +361,4 @@ Confirm each item is working immediately before the client demonstration.
 
 ---
 
-*This tracker must be updated alongside every completed development task. Last updated: Phase 3G — Newsletter demo form implemented and production build passed.*
+*This tracker must be updated alongside every completed development task. Last updated: Phase 4B — Dynamic destination detail page implemented, browser-checked, and build passed.*

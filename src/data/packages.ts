@@ -205,7 +205,7 @@ export const packages: Package[] = [
     title: 'Amalfi Coast Grand Drive',
     destinationId: 'dest-005',
     destinationName: 'Amalfi Coast, Italy',
-    imageUrl: 'https://images.unsplash.com/photo-1534308143481-c55f00dc7c47?w=1200&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1612698093158-e07ac200d44e?w=1200&q=80',
     durationDays: 7,
     pricePerPerson: 2900,
     groupSize: { min: 2, max: 8 },

@@ -154,6 +154,7 @@ tripora/
 │   ├── pages/
 │   │   ├── HomePage.tsx              # / — Homepage sections through newsletter
 │   │   ├── DestinationsPage.tsx      # /destinations — Placeholder listing
+│   │   ├── DestinationDetailPage.tsx # /destinations/:slug — Data-driven destination detail
 │   │   ├── PackagesPage.tsx          # /packages — Placeholder listing
 │   │   ├── ExperiencesPage.tsx       # /experiences — Placeholder listing
 │   │   ├── AboutPage.tsx             # /about — Placeholder
@@ -220,7 +221,7 @@ The development server runs at `http://localhost:5173` by default.
 |---------------------|-----------------------|-------------------------------|
 | `/`                 | Home                  | ✅ Route active — placeholder UI |
 | `/destinations`     | Destinations Listing  | ✅ Route active — placeholder listing with mock data |
-| `/destinations/:id` | Destination Detail    | 🔲 Planned (Phase 4)          |
+| `/destinations/:slug` | Destination Detail  | ✅ Implemented — dynamic detail page |
 | `/packages`         | Travel Packages       | ✅ Route active — placeholder listing with mock data |
 | `/packages/:id`     | Package Detail        | 🔲 Planned (Phase 5)          |
 | `/experiences`      | Experiences           | ✅ Route active — placeholder listing with mock data |
@@ -277,6 +278,7 @@ The development server runs at `http://localhost:5173` by default.
 - [x] `WhyChooseTripora` — dark teal value-proposition section with four benefit cards, brand palette typography, accessible icons, and reduced-motion-aware entrance animations; visually verified and production build passed
 - [x] `Testimonials` — responsive three-card traveller stories section with five-star ratings, reduced-motion-aware entrance animations, and a visible note that reviews are illustrative samples, not verified customer reviews
 - [x] `Newsletter` — responsive demo signup form with client-side email validation and accessible feedback; email addresses are not saved or sent to a mailing list
+- [x] `DestinationDetailPage` — slug-driven detail page with existing destination data, practical information, highlights, ratings, related packages, and enquiry links; unknown slugs show the existing 404 page
 
 ---
 
@@ -294,11 +296,9 @@ The development server runs at `http://localhost:5173` by default.
 - Search by destination name.
 - Each destination card links to its detail page.
 
-### Destination Detail (`/destinations/:id`)
-- Large hero image with destination name and highlights.
-- Overview, weather, and travel tips.
-- Related packages.
-- Booking enquiry button linking to enquiry form.
+### Destination Detail (`/destinations/:slug`)
+- Implemented: data-driven hero, overview, rating, highlights, travel types, available practical information, related packages, and enquiry CTA.
+- Dedicated weather data and travel-tip fields are not currently present in the destination dataset.
 
 ### Travel Packages (`/packages`)
 - All available travel packages with pricing.
@@ -338,7 +338,7 @@ The development server runs at `http://localhost:5173` by default.
 | 1     | Documentation and development rules                    | ✅ Complete    |
 | 2     | Design system, components, routing, types, mock data   | ✅ Complete    |
 | 3     | Premium homepage                                       | 🔄 In Progress |
-| 4     | Destinations and destination detail pages              | 🔲 Planned    |
+| 4     | Destinations and destination detail pages              | 🔄 In Progress |
 | 5     | Packages and package detail pages                      | 🔲 Planned    |
 | 6     | Experiences, About and Contact pages                   | 🔲 Planned    |
 | 7     | Trip planner, wishlist and functional interactions      | 🔲 Planned    |
@@ -433,4 +433,4 @@ Serves the `dist/` output at `http://localhost:4173` for local verification befo
 
 ---
 
-*This README is a living document and must be updated alongside every development phase. Last updated: Phase 3G — Newsletter demo form added to the homepage.*
+*This README is a living document and must be updated alongside every development phase. Last updated: Phase 4B — Dynamic destination detail route and page added.*

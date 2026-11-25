@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import HomePage from './pages/HomePage'
 import DestinationsPage from './pages/DestinationsPage'
+import DestinationDetailPage from './pages/DestinationDetailPage'
 import PackagesPage from './pages/PackagesPage'
 import ExperiencesPage from './pages/ExperiencesPage'
 import AboutPage from './pages/AboutPage'
@@ -30,6 +31,14 @@ export default function App() {
           element={
             <Layout>
               <DestinationsPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/destinations/:slug"
+          element={
+            <Layout>
+              <DestinationDetailPage />
             </Layout>
           }
         />
