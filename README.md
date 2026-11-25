@@ -136,7 +136,8 @@ tripora/
 │   │   │   ├── FeaturedDestinations.tsx # 6-destination editorial showcase grid
 │   │   │   ├── FeaturedPackages.tsx  # 3-package curated journeys showcase
 │   │   │   ├── HeroSection.tsx       # Full-width cinematic homepage hero
-│   │   │   └── TravelSearch.tsx      # Interactive journey search panel
+│   │   │   ├── TravelSearch.tsx      # Interactive journey search panel
+│   │   │   └── WhyChooseTripora.tsx  # Tripora value proposition and trust signals
 │   │   ├── layout/
 │   │   │   ├── Layout.tsx            # Page wrapper — Navbar + main + Footer
 │   │   │   ├── Navbar.tsx            # Responsive navigation bar with mobile menu
@@ -149,7 +150,7 @@ tripora/
 │   │   ├── packages.ts               # Mock travel packages data (6 packages)
 │   │   └── experiences.ts            # Mock experience categories data (6 categories)
 │   ├── pages/
-│   │   ├── HomePage.tsx              # / — Hero + TravelSearch + FeaturedDestinations + FeaturedPackages (remaining sections in progress)
+│   │   ├── HomePage.tsx              # / — Hero, TravelSearch, featured destinations/packages, and Why Tripora
 │   │   ├── DestinationsPage.tsx      # /destinations — Placeholder listing
 │   │   ├── PackagesPage.tsx          # /packages — Placeholder listing
 │   │   ├── ExperiencesPage.tsx       # /experiences — Placeholder listing
@@ -266,11 +267,12 @@ The development server runs at `http://localhost:5173` by default.
 - [x] Mobile navigation menu — opens/closes, closes on overlay click and link navigation, prevents body scroll
 - [x] Production build: `✓ built in 1.17s` — zero TypeScript errors
 
-### Homepage — Phase 3A, 3B, 3C & 3D (In Progress)
+### Homepage — Phase 3A, 3B, 3C, 3D & 3E (In Progress)
 - [x] `HeroSection` — full-width cinematic hero (`82–88vh`), destination photography with image-error gradient fallback, directional dark overlays, `Playfair Display` + `Inter` editorial typography, Motion entrance animations (respecting `prefers-reduced-motion`), and working CTAs to `/destinations` and `/packages`
 - [x] `TravelSearch` — interactive search panel below the hero with destination dropdown (from `src/data/destinations.ts`), future-only date picker, accessible 1–12 traveller stepper, validation feedback, and navigation to `/packages` with query parameters (`destination`, `date`, `travellers`)
 - [x] `FeaturedDestinations` — responsive 3/2/1-column editorial grid showcasing all 6 destinations from `src/data/destinations.ts`, with image zoom on hover, `onError` fallback, and card links to `/destinations/:slug`
 - [x] `FeaturedPackages` — responsive 3/2/1-column editorial showcase displaying 3 featured packages from `src/data/packages.ts`, showing duration, per-person pricing, highlights, `Enquire Now` links to `/booking?package=:slug`, and a `View All Packages` CTA to `/packages`
+- [x] `WhyChooseTripora` — dark teal value-proposition section with four benefit cards, brand palette typography, accessible icons, and reduced-motion-aware entrance animations; visually verified and production build passed
 
 ---
 
@@ -280,7 +282,6 @@ The development server runs at `http://localhost:5173` by default.
 - Full-screen hero section with tagline and destination search bar.
 - Featured destinations section.
 - Featured travel packages section.
-- Why Tripora section (trust signals and value propositions).
 - Testimonials section.
 - Newsletter subscription prompt.
 
