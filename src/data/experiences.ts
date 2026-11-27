@@ -45,7 +45,7 @@ export const experiences: Experience[] = [
     subtitle: 'Witness the planet\'s greatest spectacles',
     description:
       'Get closer to nature than you thought possible. Track gorillas through rainforest mist, observe elephant herds at waterhole sunsets, or watch humpback whales breach off remote coastlines — guided by naturalists who share your reverence for the wild.',
-    imageUrl: 'https://images.unsplash.com/photo-1534759926870-b1ff1e7f9f7a?w=1200&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&q=80',
     category: 'Wildlife & Nature',
     tags: ['Safari', 'Birdwatching', 'Marine Life', 'National Parks', 'Gorilla Trekking'],
   },

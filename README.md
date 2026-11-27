@@ -28,9 +28,9 @@ A premium, modern, responsive travel agency website built to demonstrate profess
 
 ## 1. Project Overview
 
-**Tripora** is a travel and tourism web application designed to showcase what a premium, client-ready travel agency website looks like. The project is intended as a startup demonstration product — a reference-quality website that clients can envision as the foundation for their own branded travel platform.
+**Tripora** is a frontend travel concept built to demonstrate a premium editorial travel website. The project is a startup demonstration product, not an operating travel agency or a production booking service.
 
-The site presents curated destinations, travel packages, and booking enquiry flows with a consistent editorial aesthetic that communicates trust, sophistication, and wanderlust.
+The site presents sample destinations, travel packages, and client-side enquiry flows with a consistent editorial travel aesthetic.
 
 ---
 
@@ -136,9 +136,9 @@ tripora/
 │   │   │   ├── FeaturedPackages.tsx  # 3-package curated journeys showcase
 │   │   │   ├── HeroSection.tsx       # Full-width cinematic homepage hero
 │   │   │   ├── Newsletter.tsx        # Demo-only newsletter signup with email validation
-│   │   │   ├── Testimonials.tsx      # Sample traveller stories and ratings
+│   │   │   ├── Testimonials.tsx      # Editorial sample stories, Kyoto image, and disclosure
 │   │   │   ├── TravelSearch.tsx      # Interactive journey search panel
-│   │   │   └── WhyChooseTripora.tsx  # Tripora value proposition and trust signals
+│   │   │   └── WhyChooseTripora.tsx  # Numbered editorial demo values
 │   │   ├── layout/
 │   │   │   ├── Layout.tsx            # Page wrapper — Navbar + main + Footer
 │   │   │   ├── Navbar.tsx            # Responsive navigation bar with mobile menu
@@ -270,7 +270,7 @@ The development server runs at `http://localhost:5173` by default.
 - [x] `src/data/destinations.ts` — 6 mock destinations with full data
 - [x] `src/data/packages.ts` — 6 mock travel packages with full itineraries
 - [x] `src/data/experiences.ts` — 6 experience categories
-- [x] `Button` component — 4 variants (primary, secondary, ghost, outline), 3 sizes
+- [x] `Button` component — 5 variants (primary, secondary, ghost, outline, outline-light), 3 sizes
 - [x] `Container` component — consistent page-width wrapper with responsive padding
 - [x] `Navbar` — responsive with scroll-aware background, mobile hamburger menu, active link highlighting, keyboard accessible
 - [x] `Footer` — brand column and navigation to implemented routes; no unconfigured social or policy links
@@ -281,12 +281,12 @@ The development server runs at `http://localhost:5173` by default.
 - [x] Production build: `✓ built in 1.17s` — zero TypeScript errors
 
 ### Homepage — Phase 3A–3G (In Progress)
-- [x] `HeroSection` — full-width cinematic hero (`82–88vh`), destination photography with image-error gradient fallback, directional dark overlays, `Playfair Display` + `Inter` editorial typography, Motion entrance animations (respecting `prefers-reduced-motion`), and working CTAs to `/destinations` and `/packages`
+- [x] `HeroSection` — responsive cinematic hero with destination photography, image-error gradient fallback, directional dark overlays, `Playfair Display` + `Inter` editorial typography, Motion entrance animations (respecting `prefers-reduced-motion`), and working CTAs to `/destinations` and `/packages`
 - [x] `TravelSearch` — interactive search panel below the hero with destination dropdown (from `src/data/destinations.ts`), date picker that prevents past dates, accessible 1–12 traveller stepper, validation feedback, and navigation to `/packages` with query parameters (`destination`, `date`, `travellers`). The package listing applies a valid destination and retains date/traveller values as planning context without checking availability.
 - [x] `FeaturedDestinations` — responsive 3/2/1-column editorial grid showcasing all 6 destinations from `src/data/destinations.ts`, with image zoom on hover, `onError` fallback, and card links to `/destinations/:slug`
 - [x] `FeaturedPackages` — responsive 3/2/1-column editorial showcase displaying 3 featured packages from `src/data/packages.ts`, showing duration, per-person pricing, highlights, `Enquire Now` links to `/booking?package=:slug`, and a `View All Packages` CTA to `/packages`
-- [x] `WhyChooseTripora` — dark teal value-proposition section with four benefit cards, brand palette typography, accessible icons, and reduced-motion-aware entrance animations; visually verified and production build passed
-- [x] `Testimonials` — responsive three-card traveller stories section with five-star ratings, reduced-motion-aware entrance animations, and a visible note that reviews are illustrative samples, not verified customer reviews
+- [x] `WhyChooseTripora` — dark teal editorial section with four numbered entries and thin separators; content is illustrative, not verified business claims
+- [x] `Testimonials` — editorial featured quote with a Kyoto photograph and two supporting sample quotes; no ratings or verification claims, with a visible sample-review disclosure
 - [x] `Newsletter` — responsive demo signup form with client-side email validation and accessible feedback; email addresses are not saved or sent to a mailing list
 - [x] `DestinationDetailPage` — slug-driven detail page with existing destination data, practical information, highlights, ratings, related packages, and enquiry links; unknown slugs show the existing 404 page
 - [x] `PackagesPage` — responsive listing of all six packages with combined duration, destination, and per-person price filters; recommended, price, duration, and review-count sorting; reset and empty states; expandable package overviews; full-itinerary links; and package-specific booking enquiry links.
@@ -363,7 +363,7 @@ The development server runs at `http://localhost:5173` by default.
 - The production preview passed direct-load and browser-refresh checks for 20 routes: the home page, destination/package listings and all 12 detail pages, Experiences, About, Contact, Booking, and an unknown-route 404.
 - Responsive overflow checks passed on all 20 routes at 390, 768, 1024, and 1440px. Verified package filters individually and combined, all sort modes, reset and empty states, homepage search query handling, destination/package booking preselection, mobile navigation keyboard behavior, form validation/confirmation/edit flows, and all six package estimator bounds and totals.
 - Forced image-request failure showed the accessible image fallback. Booking/contact confirmations continue to state accurately that nothing is sent, booked, or stored.
-- Final `npm run build`, `npm run lint`, and `git diff --check` pass. The current production entry bundle is **227.27 kB minified (71.02 kB gzip)**; `dist/` is generated locally and ignored by Git.
+- Final `npm run build`, `npm run lint`, and `git diff --check` pass. The current production entry bundle is **227.27 kB minified (71.00 kB gzip)**; `dist/` is generated locally and ignored by Git.
 - No application JavaScript errors were observed. The deliberate image-fallback test produces expected failed image requests; Motion may log an informational reduced-motion warning during reduced-motion checks.
 
 ---
@@ -402,7 +402,8 @@ Phase 5 is complete: booking/contact integration, package listing, package detai
 - **No payment processing:** Any pricing displayed is for demonstration purposes only.
 - **No real email delivery or booking persistence:** Booking and contact confirmations are client-side and in memory only; no enquiry or message is sent, no booking is made, and details are not persisted.
 - **No real-time availability:** Package and destination availability is not connected to a live inventory system.
-- **Image sourcing:** Destination, package, and hero photography uses external Unsplash URLs. Responsive delivery and visual fallbacks are implemented, but images still require a network connection; confirm licensing and attribution before a public business launch.
+- **Automated tests:** No test script or automated component/end-to-end test suite is configured. Build and lint checks are available; browser checks are manual.
+- **Image sourcing:** Destination, package, hero, and testimonial photography uses external Unsplash URLs. Responsive delivery and branded fallbacks are implemented, but images require a network connection and licensing/attribution still needs confirmation. One Wildlife & Nature category image URL returned HTTP 404 in the audit and currently displays the branded fallback.
 - **Homepage JavaScript:** The homepage still loads its Motion animation code when visited. Route splitting defers this code on non-home routes; no animation library or other dependency was removed.
 - **Search metadata:** Route metadata is set client-side. No canonical URLs are configured until a production domain is known; prerendering or server rendering may improve indexing across crawlers.
 - **Deployment:** The local production preview supports direct SPA routes, but the eventual hosting platform still needs its React Router SPA fallback configured. No deployment configuration or live deployment has been created.
@@ -435,7 +436,7 @@ npm run build
 
 This command runs TypeScript type-checking followed by a Vite production build. The output is placed in the `dist/` directory.
 
-Phase 6F local release verification: the production preview passed direct navigation and refresh on all application routes. The latest main JavaScript entry is **227.27 kB minified (71.02 kB gzip)**. The generated `dist/` directory is ignored by Git; no deployment has been performed.
+Phase 6F local release verification: the production preview passed direct navigation and refresh on all application routes. The latest main JavaScript entry is **227.27 kB minified (71.00 kB gzip)**. The generated `dist/` directory is ignored by Git; no deployment has been performed.
 
 ### Preview Build Locally
 
@@ -480,8 +481,8 @@ Serves the `dist/` output at `http://localhost:4173` for local verification befo
 - **Design system:** Developed specifically for the Tripora project.
 - **Typography:** [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) and [Inter](https://fonts.google.com/specimen/Inter) via Google Fonts.
 - **Icons:** [Lucide React](https://lucide.dev/) — open-source icon library.
-- **Destination photography:** Sources to be documented as images are added. All photography must be appropriately licensed before use in a client-facing deployment.
+- **Destination photography:** Images are loaded from Unsplash URLs in the source data and components; per-image source records and applicable licensing/attribution have not been independently documented. Confirm rights and attribution before any public business deployment.
 
 ---
 
-*This README is a living document and must be updated alongside every development phase. Last updated: Phase 6F — Final regression testing and local release preparation.*
+*This README is a living document and must be updated alongside every development phase. Last updated: 27 November 2026 — final project audit.*

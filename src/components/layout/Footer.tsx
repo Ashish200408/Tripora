@@ -80,8 +80,13 @@ export default function Footer() {
       <div className="border-t border-[#E9E2D5]/10">
         <Container className="py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#E9E2D5]/70">
-            <p>&copy; {CURRENT_YEAR} Tripora. All rights reserved.</p>
-            <p className="italic" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+            <p className="text-[#9EAFB2]">
+              &copy; {CURRENT_YEAR} Tripora. All rights reserved.
+            </p>
+            <p
+              className="italic text-[#9EAFB2]"
+              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            >
               Travel beyond the ordinary.
             </p>
           </div>

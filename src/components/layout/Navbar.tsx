@@ -113,8 +113,8 @@ export default function Navbar() {
 
   const activeLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive
-      ? 'text-[#76552F] font-medium'
-      : 'text-[#142A32]/70 hover:text-[#142A32] transition-colors duration-200'
+      ? 'text-[#76552F] font-bold'
+      : 'text-[#142A32]/70 font-semibold hover:text-[#142A32] transition-colors duration-200'
 
   return (
     <>

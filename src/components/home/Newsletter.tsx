@@ -47,36 +47,36 @@ export default function Newsletter() {
   return (
     <section
       aria-labelledby="newsletter-heading"
-      className="py-16 sm:py-20 lg:py-24 bg-[#142A32]"
+      className="bg-[#142A32] py-16 sm:py-20 lg:py-24"
     >
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 lg:items-center gap-10 lg:gap-16">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
           <div className="max-w-2xl">
-            <p className="text-xs sm:text-sm tracking-[0.24em] uppercase text-[#B68C63]! font-semibold mb-3">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[#B68C63]! sm:text-sm">
               The Tripora Journal
             </p>
             <h2
               id="newsletter-heading"
-              className="font-heading text-[#F8F7F3]! mb-4"
+              className="mb-5 font-heading text-4xl! leading-tight! text-[#F8F7F3]! sm:text-5xl! lg:text-6xl!"
             >
               A Little Inspiration for Your Next Journey.
             </h2>
-            <p className="text-base sm:text-lg text-[#E9E2D5]! leading-relaxed">
-              Receive thoughtful travel inspiration, destination guides and
-              occasional updates from Tripora.
+            <p className="max-w-xl text-base leading-relaxed text-[#E9E2D5]/85! sm:text-lg">
+              A preview of the thoughtful travel inspiration, destination guides
+              and occasional updates a future Tripora Journal could offer.
             </p>
           </div>
 
-          <div>
+          <div className="border-t border-[#E9E2D5]/20 pt-6 sm:pt-8">
             <form
               onSubmit={handleSubmit}
               noValidate
-              className="flex flex-col sm:flex-row sm:items-end gap-3"
+              className="flex flex-col gap-4 sm:flex-row sm:items-end"
             >
               <div className="flex-1">
                 <label
                   htmlFor="newsletter-email"
-                  className="block text-sm font-medium text-[#E9E2D5] mb-2"
+                  className="mb-2 block text-sm font-medium text-[#E9E2D5]"
                 >
                   Email address
                 </label>
@@ -97,24 +97,25 @@ export default function Newsletter() {
                     .filter(Boolean)
                     .join(' ')}
                   placeholder="you@example.com"
-                  className="w-full px-4 py-3 text-sm text-[#142A32] bg-[#F8F7F3] border border-[#4A6572]/70 rounded focus:ring-2 focus:ring-[#76552F] focus:border-[#76552F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#142A32] placeholder:text-[#4A6572]"
+                  className="h-12 w-full rounded border border-[#4A6572]/70 bg-[#F8F7F3] px-4 text-sm text-[#142A32] placeholder:text-[#4A6572] focus:border-[#76552F] focus:ring-2 focus:ring-[#76552F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E9E2D5]"
                 />
               </div>
               <Button
                 type="submit"
-                variant="outline-light"
+                variant="secondary"
                 size="md"
-                className="sm:shrink-0"
+                fullWidth
+                className="h-12 sm:w-auto sm:shrink-0"
               >
-                Subscribe
+                Check email
               </Button>
             </form>
 
             <p
               id="newsletter-demo-note"
-              className="mt-3 text-xs text-[#E9E2D5]/75!"
+              className="mt-4 max-w-md text-sm leading-relaxed text-[#E9E2D5]/85!"
             >
-              Demo only: your address is not saved or sent to a mailing list.
+              Demo only: no email is sent and no subscription is stored.
             </p>
 
             {feedback && (

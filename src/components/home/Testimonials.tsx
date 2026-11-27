@@ -1,6 +1,9 @@
-import { motion, useReducedMotion } from 'motion/react'
-import { Quote, Star } from 'lucide-react'
+import { Quote } from 'lucide-react'
 import Container from '../ui/Container'
+import ImageWithFallback from '../ui/ImageWithFallback'
+
+const KYOTO_IMAGE_URL =
+  'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&q=80'
 
 const testimonials = [
   {
@@ -23,98 +26,102 @@ const testimonials = [
   },
 ]
 
-const easeOutExpo = [0.22, 1, 0.36, 1] as const
-
 export default function Testimonials() {
-  const shouldReduceMotion = useReducedMotion()
+  const [featuredTestimonial, ...supportingTestimonials] = testimonials
 
   return (
     <section
       aria-labelledby="testimonials-heading"
-      className="py-16 sm:py-20 lg:py-24 bg-[#F8F7F3] border-t border-[#142A32]/8"
+      className="border-t border-[#142A32]/8 bg-[#E9E2D5] pt-20 pb-12 sm:pb-16 lg:py-20"
     >
       <Container>
-        <div className="max-w-2xl mb-12 lg:mb-14">
-          <p className="text-xs sm:text-sm tracking-[0.24em] uppercase text-[#142A32]! font-semibold mb-3">
+        <div className="mb-7 max-w-2xl sm:mb-9 lg:mb-10">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-[#76552F]! sm:text-sm">
             Traveller Stories
           </p>
           <h2
             id="testimonials-heading"
-            className="font-heading text-[#142A32]! mb-4"
+            className="mb-4 font-heading text-[#142A32]!"
           >
             Journeys That Stay With You.
           </h2>
-          <p className="text-base sm:text-lg text-[#4A6572]! leading-relaxed">
+          <p className="text-base leading-relaxed text-[#4A6572]! sm:text-lg">
             The best journeys leave you with more than photographs: small
             discoveries, new perspectives and stories you carry home.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {testimonials.map((testimonial, index) => {
-            const motionProps = shouldReduceMotion
-              ? {}
-              : {
-                  initial: { opacity: 0, y: 16 },
-                  whileInView: { opacity: 1, y: 0 },
-                  viewport: { once: true, amount: 0.2 },
-                  transition: {
-                    duration: 0.55,
-                    delay: index * 0.08,
-                    ease: easeOutExpo,
-                  },
-                }
-
-            return (
-              <motion.article
-                key={testimonial.name}
-                {...motionProps}
-                className="h-full flex flex-col rounded-xl bg-white border border-[#142A32]/10 p-6 sm:p-7 shadow-[0_2px_10px_rgba(20,42,50,0.05)]"
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <div
-                    role="img"
-                    aria-label="5 out of 5 stars"
-                    className="flex items-center gap-1 text-[#76552F]"
-                  >
-                    {Array.from({ length: 5 }, (_, starIndex) => (
-                      <Star
-                        key={starIndex}
-                        size={16}
-                        fill="currentColor"
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-                  <Quote
-                    size={24}
-                    className="text-[#B68C63]/70"
-                    aria-hidden="true"
-                  />
-                </div>
-
-                <blockquote className="flex-1">
-                  <p className="text-base text-[#4A6572]! leading-relaxed">
-                    “{testimonial.quote}”
-                  </p>
-                </blockquote>
-
-                <footer className="mt-6 pt-5 border-t border-[#142A32]/10">
-                  <h3 className="font-heading text-lg text-[#142A32]! mb-1">
-                    {testimonial.name}
-                  </h3>
-                  <p className="text-sm text-[#4A6572]!">
-                    Visited {testimonial.destination}
-                  </p>
-                </footer>
-              </motion.article>
-            )
-          })}
-        </div>
-
-        <p className="mt-8 text-center text-xs text-[#4A6572]!">
+        <p
+          role="note"
+          className="mb-7 border-l-2 border-[#B68C63] pl-4 text-sm leading-relaxed text-[#142A32]! sm:mb-9 sm:text-base"
+        >
           Illustrative sample testimonials; these are not verified customer reviews.
         </p>
+
+        {featuredTestimonial && (
+          <>
+            <div className="grid grid-cols-1 items-center gap-7 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12">
+              <figure className="order-1 lg:order-2">
+                <ImageWithFallback
+                  src={KYOTO_IMAGE_URL}
+                  alt="Kyoto, Japan"
+                  fallbackLabel="Kyoto, Japan"
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                  loading="lazy"
+                  className="aspect-[4/3] w-full rounded-lg object-cover"
+                />
+                <figcaption className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#76552F]">
+                  Kyoto, Japan
+                </figcaption>
+              </figure>
+
+              <article className="order-2 border-l-2 border-[#B68C63] pl-6 sm:pl-8 lg:order-1 lg:pl-10">
+                <Quote
+                  size={40}
+                  strokeWidth={1.25}
+                  className="mb-4 text-[#B68C63]"
+                  aria-hidden="true"
+                />
+                <blockquote>
+                  <p className="mb-6 font-heading text-xl! leading-relaxed! text-[#142A32]! sm:text-2xl! lg:text-3xl!">
+                    “{featuredTestimonial.quote}”
+                  </p>
+                </blockquote>
+                <footer>
+                  <p className="font-medium text-[#142A32]!">
+                    {featuredTestimonial.name}
+                  </p>
+                  <p className="mt-1 text-sm text-[#4A6572]!">
+                    Visited {featuredTestimonial.destination}
+                  </p>
+                </footer>
+              </article>
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-10 lg:gap-10">
+              {supportingTestimonials.map((testimonial) => (
+                <article
+                  key={testimonial.name}
+                  className="border-t border-[#142A32]/20 pt-5 sm:pt-6"
+                >
+                  <blockquote>
+                    <p className="mb-5 font-heading text-lg! leading-relaxed! text-[#142A32]! sm:text-xl!">
+                      “{testimonial.quote}”
+                    </p>
+                  </blockquote>
+                  <footer>
+                    <p className="font-medium text-[#142A32]!">
+                      {testimonial.name}
+                    </p>
+                    <p className="mt-1 text-sm text-[#4A6572]!">
+                      Visited {testimonial.destination}
+                    </p>
+                  </footer>
+                </article>
+              ))}
+            </div>
+          </>
+        )}
       </Container>
     </section>
   )

@@ -75,16 +75,16 @@ export default function TravelSearch() {
   return (
     <section
       aria-label="Search for your journey"
-      className="relative z-20 -mt-10 sm:-mt-12 pb-12 sm:pb-16"
+      className="relative z-20 -mt-8 sm:-mt-12 pb-12 sm:pb-16"
     >
       <Container>
-        <div className="bg-[#F8F7F3] rounded-xl border border-[#142A32]/12 shadow-[0_12px_36px_rgba(20,42,50,0.12)] p-5 sm:p-6 lg:p-7">
+        <div className="bg-[#F8F7F3] rounded-xl border border-[#142A32]/12 shadow-[0_12px_36px_rgba(20,42,50,0.12)] p-4 sm:p-6 lg:p-7">
           <form
             onSubmit={handleSubmit}
             noValidate
             aria-describedby={error ? 'travel-search-error' : undefined}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.35fr_1.1fr_1fr_auto] gap-4 lg:gap-5 items-end">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.35fr_1.1fr_1fr_auto] gap-x-4 gap-y-5 md:gap-y-4 lg:gap-5 items-end">
               {/* 1. Destination */}
               <div>
                 <label
