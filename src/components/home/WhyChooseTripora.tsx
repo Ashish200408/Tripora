@@ -11,7 +11,6 @@ interface Benefit {
   title: string
   description: string
   icon: LucideIcon
-  iconLabel: string
 }
 
 const benefits: Benefit[] = [
@@ -19,33 +18,29 @@ const benefits: Benefit[] = [
     id: 'curated-journeys',
     title: 'Curated Journeys',
     description:
-      'Thoughtfully selected destinations and experiences designed to make every trip meaningful.',
+      'Sample destinations and package data demonstrate how a travel discovery experience can be organized.',
     icon: Compass,
-    iconLabel: 'Compass icon representing curated journeys',
   },
   {
     id: 'personalized-planning',
     title: 'Personalized Planning',
     description:
-      'Travel plans shaped around your interests, preferences and pace.',
+      'The search and enquiry forms illustrate planning interactions; they do not create personalized itineraries.',
     icon: SlidersHorizontal,
-    iconLabel: 'Personalised preferences icon',
   },
   {
     id: 'extraordinary-experiences',
     title: 'Extraordinary Experiences',
     description:
-      'Discover memorable places, local culture and experiences beyond ordinary sightseeing.',
+      'Browse illustrative destination highlights, activities, and day-by-day itineraries.',
     icon: Sparkles,
-    iconLabel: 'Sparkles icon representing extraordinary experiences',
   },
   {
     id: 'dedicated-assistance',
-    title: 'Dedicated Assistance',
+    title: 'Demo Enquiries',
     description:
-      'Helpful guidance throughout your planning journey, from the first idea to your return.',
+      'Booking and contact forms validate locally. No travel assistance service is connected.',
     icon: Headphones,
-    iconLabel: 'Headphones icon representing dedicated assistance',
   },
 ]
 
@@ -63,16 +58,16 @@ export default function WhyChooseTripora() {
         {/* Editorial Section Header */}
         <div className="max-w-2xl mb-12 lg:mb-14">
           <p className="text-xs sm:text-sm tracking-[0.24em] uppercase text-[#B68C63]! font-semibold mb-3">
-            The Tripora Difference
+            Inside the Tripora Demo
           </p>
           <h2
             id="why-tripora-heading"
             className="font-heading text-[#F8F7F3]! mb-4"
           >
-            Travel Designed Around You.
+            Explore a Travel Concept.
           </h2>
           <p className="text-base sm:text-lg text-[#E9E2D5]/85! leading-relaxed">
-            Every journey deserves thoughtful planning, personal touches and experiences worth remembering.
+            Sample content and frontend interactions show one possible approach to travel discovery.
           </p>
         </div>
 
@@ -101,10 +96,9 @@ export default function WhyChooseTripora() {
               >
                 <div
                   className="w-11 h-11 rounded-lg bg-[#B68C63]/15 border border-[#B68C63]/30 flex items-center justify-center mb-5 shrink-0"
-                  role="img"
-                  aria-label={benefit.iconLabel}
+                  aria-hidden="true"
                 >
-                  <Icon size={20} className="text-[#B68C63]" aria-hidden="true" />
+                  <Icon size={20} className="text-[#B68C63]" />
                 </div>
 
                 <h3 className="font-heading text-xl text-[#F8F7F3]! mb-3">

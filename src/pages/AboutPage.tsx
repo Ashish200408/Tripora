@@ -1,52 +1,59 @@
-import { Link } from 'react-router-dom'
 import Container from '../components/ui/Container'
-import Button from '../components/ui/Button'
+import { ButtonLink } from '../components/ui/Button'
+import PageMetadata from '../components/seo/PageMetadata'
 
 // =========================================================
-// About Page – Placeholder
-// Phase 6 will build the full About page
+// About Page – truthful frontend concept overview
 // =========================================================
 
 const values = [
   {
-    title: 'Authenticity',
-    description: 'We design journeys that connect you with genuine local culture, not manufactured tourist experiences.',
+    title: 'Authentic Connections',
+    description: 'Sample itineraries highlight local culture as a design goal, not as a verified Tripora service.',
   },
   {
-    title: 'Excellence',
-    description: 'Every detail — from accommodation selection to guide expertise — is held to the highest standard.',
+    title: 'Thoughtful Details',
+    description: 'Package cards demonstrate how accommodation, activities, and travel notes might be presented.',
   },
   {
-    title: 'Responsibility',
-    description: 'We travel with intention, supporting local communities and minimising environmental impact.',
+    title: 'Responsible Travel',
+    description: 'This illustrative value is not a claim about a verified sustainability program or partner network.',
   },
   {
-    title: 'Personalisation',
-    description: 'No two travellers are alike. Every Tripora journey is tailored to the individual.',
+    title: 'Flexible Planning',
+    description: 'Search and enquiry forms illustrate planning interactions but do not generate real itineraries.',
   },
 ]
 
 export default function AboutPage() {
   return (
-    <section className="section-padding">
-      <Container>
+    <>
+      <PageMetadata
+        title="About Tripora | Travel Concept Demo"
+        description="Explore the values and sample brand story behind Tripora, a frontend travel concept. Team, services, and company details are illustrative, not verified."
+      />
+      <section className="section-padding">
+        <Container>
         {/* Hero text */}
         <div className="max-w-3xl mb-16">
-          <p className="text-sm tracking-widest uppercase text-[#B68C63] mb-4 font-medium">
-            Our Story
+          <p className="text-sm tracking-widest uppercase text-[#76552F] mb-4 font-medium">
+            A Travel Concept
           </p>
-          <h1 className="mb-6">We Believe Travel<br /><em>Should Transform You.</em></h1>
+          <h1 className="mb-6">Travel, Thoughtfully<br /><em>Explored.</em></h1>
           <p className="text-lg text-[#4A6572] leading-relaxed mb-4">
-            Tripora was founded on a single conviction: that the world's most extraordinary places deserve to be experienced with intention, expertise, and genuine care.
+            Tripora is a frontend demonstration of a travel experience concept,
+            using sample destinations, package itineraries, and client-side
+            enquiry flows.
           </p>
           <p className="text-[#4A6572] leading-relaxed">
-            We are a team of passionate travellers, destination specialists, and storytellers who have spent years building relationships with the finest guides, hotels, and local communities across the globe. Every itinerary we create carries that accumulated knowledge and love for travel.
+            It does not represent an operating travel agency. Company history,
+            team, services, and partner relationships are not verified.
           </p>
         </div>
 
         {/* Values */}
         <div className="mb-16">
-          <h2 className="mb-8">What We Stand For</h2>
+          <h2 className="mb-8">Values in the Concept</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {values.map((v) => (
               <div
@@ -62,26 +69,31 @@ export default function AboutPage() {
 
         {/* CTA */}
         <div className="bg-[#142A32] rounded-lg p-8 lg:p-12 text-[#E9E2D5]">
-          <h2 className="text-[#F8F7F3] mb-3">Ready to Start Planning?</h2>
+          <h2 className="text-[#F8F7F3] mb-3">Explore the Demo</h2>
           <p className="text-[#E9E2D5]/70 mb-6 max-w-xl">
-            Our travel specialists are ready to craft your perfect journey. Get in touch and we'll build an itinerary around your dreams.
+            Browse sample destinations and itineraries, or preview a
+            client-side enquiry form. Nothing is sent or booked.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link to="/contact">
-              <Button variant="secondary" size="md">Contact Us</Button>
-            </Link>
-            <Link to="/packages">
-              <Button variant="ghost" size="md" className="text-[#E9E2D5] hover:bg-white/10 border-white/20">
-                Browse Packages
-              </Button>
-            </Link>
+            <ButtonLink to="/contact" variant="secondary" size="md">
+              Preview Contact Form
+            </ButtonLink>
+            <ButtonLink
+              to="/packages"
+              variant="ghost"
+              size="md"
+              className="text-[#E9E2D5] hover:bg-white/10 border-white/20"
+            >
+              Browse Sample Packages
+            </ButtonLink>
           </div>
         </div>
 
         <p className="text-sm text-[#4A6572] text-center mt-10">
-          The full About page with team profiles and brand story will be completed in Phase 6.
+          All brand story and values copy on this page is illustrative.
         </p>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </>
   )
 }

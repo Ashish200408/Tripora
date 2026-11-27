@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { Globe, Mail, Rss, Play } from 'lucide-react'
 import Container from '../ui/Container'
 
 // =========================================================
@@ -11,40 +10,22 @@ const footerLinks = {
     { label: 'Destinations', to: '/destinations' },
     { label: 'Packages', to: '/packages' },
     { label: 'Experiences', to: '/experiences' },
-    { label: 'Group Travel', to: '/packages' },
   ],
   Company: [
     { label: 'About Tripora', to: '/about' },
-    { label: 'Our Story', to: '/about' },
     { label: 'Contact Us', to: '/contact' },
-    { label: 'Book a Trip', to: '/booking' },
-  ],
-  Support: [
-    { label: 'FAQs', to: '/contact' },
-    { label: 'Travel Insurance', to: '/contact' },
-    { label: 'Cancellation Policy', to: '/contact' },
-    { label: 'Privacy Policy', to: '/contact' },
+    { label: 'Booking Enquiry', to: '/booking' },
   ],
 }
 
-const socialLinks = [
-  { label: 'Website', href: '#', icon: Globe },
-  { label: 'Newsletter', href: '#', icon: Mail },
-  { label: 'Blog', href: '#', icon: Rss },
-  { label: 'Videos', href: '#', icon: Play },
-]
+const CURRENT_YEAR = new Date().getFullYear()
 
 export default function Footer() {
-  const year = new Date().getFullYear()
-
   return (
-    <footer
-      className="bg-[#142A32] text-[#E9E2D5] mt-auto"
-      role="contentinfo"
-    >
+    <footer className="bg-[#142A32] text-[#E9E2D5] mt-auto">
       {/* Main footer content */}
       <Container className="py-14 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
 
           {/* Brand column */}
           <div className="lg:col-span-2">
@@ -60,22 +41,13 @@ export default function Footer() {
                 Tripora
               </span>
             </Link>
-            <p className="text-sm text-[#E9E2D5]/60 leading-relaxed max-w-xs mb-6">
-              Travel beyond the ordinary. We craft premium, personalised journeys that connect curious travellers with the world's most extraordinary places.
+            <p className="text-sm text-[#E9E2D5]/75 leading-relaxed max-w-xs mb-6">
+              Explore sample destinations and curated itineraries in this
+              Tripora demo.
             </p>
-            {/* Social links */}
-            <div className="flex items-center gap-3" aria-label="Social media links">
-              {socialLinks.map(({ label, href, icon: Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="w-9 h-9 flex items-center justify-center rounded border border-[#E9E2D5]/15 text-[#E9E2D5]/50 hover:text-[#E9E2D5] hover:border-[#E9E2D5]/40 transition-colors duration-200"
-                >
-                  <Icon size={15} />
-                </a>
-              ))}
-            </div>
+            <p className="text-xs text-[#E9E2D5]/75">
+              No social profiles are configured for this demo.
+            </p>
           </div>
 
           {/* Link columns */}
@@ -92,7 +64,7 @@ export default function Footer() {
                   <li key={label}>
                     <Link
                       to={to}
-                      className="text-sm text-[#E9E2D5]/55 hover:text-[#E9E2D5] transition-colors duration-200"
+                      className="text-sm text-[#E9E2D5]/75 hover:text-[#E9E2D5] transition-colors duration-200"
                     >
                       {label}
                     </Link>
@@ -107,8 +79,8 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-[#E9E2D5]/10">
         <Container className="py-5">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#E9E2D5]/35">
-            <p>&copy; {year} Tripora. All rights reserved.</p>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#E9E2D5]/70">
+            <p>&copy; {CURRENT_YEAR} Tripora. All rights reserved.</p>
             <p className="italic" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
               Travel beyond the ordinary.
             </p>

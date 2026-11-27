@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Clock, Compass, MapPin } from 'lucide-react'
 import Container from '../ui/Container'
-import Button from '../ui/Button'
+import { ButtonLink } from '../ui/Button'
 import { getFeaturedPackages } from '../../data/packages'
+import { getResponsiveImageSrcSet } from '../../utils/responsiveImage'
 
 // =========================================================
 // FeaturedPackages – Homepage curated packages showcase
@@ -27,31 +28,34 @@ export default function FeaturedPackages() {
         {/* Editorial Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 lg:mb-14">
           <div className="max-w-2xl">
-            <p className="text-xs sm:text-sm tracking-[0.24em] uppercase text-[#B68C63] font-semibold mb-3">
-              Curated Journeys
+            <p className="text-xs sm:text-sm tracking-[0.24em] uppercase text-[#76552F] font-semibold mb-3">
+              Sample Journeys
             </p>
             <h2
               id="featured-packages-heading"
               className="font-heading text-[#142A32] mb-4"
             >
-              Journeys Made Extraordinary
+              Sample Travel Packages
             </h2>
             <p className="text-base sm:text-lg text-[#4A6572] leading-relaxed">
-              Thoughtfully designed escapes for travellers who want more than an ordinary holiday.
+              Review example itineraries, travel styles, and per-person prices.
             </p>
           </div>
 
           <div className="shrink-0">
-            <Link to="/packages" className="inline-flex">
-              <Button variant="outline" size="md" className="group">
-                View All Packages
-                <ArrowRight
-                  size={16}
-                  className="transition-transform duration-200 group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </Button>
-            </Link>
+            <ButtonLink
+              to="/packages"
+              variant="outline"
+              size="md"
+              className="group"
+            >
+              View All Packages
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-200 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </ButtonLink>
           </div>
         </div>
 
@@ -71,10 +75,13 @@ export default function FeaturedPackages() {
                   {!hasFailed ? (
                     <img
                       src={pkg.imageUrl}
+                      srcSet={getResponsiveImageSrcSet(pkg.imageUrl)}
+                      sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
                       alt={`${pkg.title} in ${pkg.destinationName}`}
                       onError={() => handleImageError(pkg.id)}
                       className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                       loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <div
@@ -96,7 +103,7 @@ export default function FeaturedPackages() {
 
                 {/* Card Body */}
                 <div className="p-6 flex flex-col flex-1">
-                  <div className="flex items-center justify-between gap-2 text-xs text-[#B68C63] font-semibold tracking-wider uppercase mb-2">
+                  <div className="flex items-center justify-between gap-2 text-xs text-[#76552F] font-semibold tracking-wider uppercase mb-2">
                     <span className="inline-flex items-center gap-1.5">
                       <MapPin size={13} aria-hidden="true" />
                       {pkg.destinationName}
@@ -107,7 +114,7 @@ export default function FeaturedPackages() {
                     </span>
                   </div>
 
-                  <h3 className="font-heading text-2xl text-[#142A32] mb-2.5 group-hover:text-[#B68C63] transition-colors duration-200">
+                  <h3 className="font-heading text-2xl text-[#142A32] mb-2.5 group-hover:text-[#76552F] transition-colors duration-200">
                     {pkg.title}
                   </h3>
 
@@ -136,7 +143,7 @@ export default function FeaturedPackages() {
 
                     <Link
                       to={`/booking?package=${pkg.slug}`}
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-[#142A32] hover:text-[#B68C63] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B68C63] rounded"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-[#142A32] hover:text-[#76552F] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#76552F] rounded"
                     >
                       Enquire Now
                       <ArrowRight

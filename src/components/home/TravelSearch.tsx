@@ -102,7 +102,7 @@ export default function TravelSearch() {
                     setDestination(e.target.value)
                     if (error) setError(null)
                   }}
-                  className="w-full h-12 px-3.5 text-sm text-[#142A32] bg-white border border-[#142A32]/18 rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#B68C63]/50 focus:border-[#B68C63] transition-colors cursor-pointer"
+                  className="w-full h-12 px-3.5 text-sm text-[#142A32] bg-white border border-[#4A6572]/70 rounded-[6px] focus:ring-2 focus:ring-[#76552F] focus:border-[#76552F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#142A32] transition-colors cursor-pointer"
                 >
                   <option value="">Any destination</option>
                   {destinations.map((dest) => (
@@ -135,7 +135,7 @@ export default function TravelSearch() {
                   required
                   aria-required="true"
                   aria-invalid={Boolean(error && (!travelDate || travelDate < minDate))}
-                  className="w-full h-12 px-3.5 text-sm text-[#142A32] bg-white border border-[#142A32]/18 rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#B68C63]/50 focus:border-[#B68C63] transition-colors"
+                  className="w-full h-12 px-3.5 text-sm text-[#142A32] bg-white border border-[#4A6572]/70 rounded-[6px] focus:ring-2 focus:ring-[#76552F] focus:border-[#76552F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#142A32] transition-colors"
                 />
               </div>
 
@@ -151,14 +151,14 @@ export default function TravelSearch() {
                 <div
                   role="group"
                   aria-labelledby="travel-search-travellers-label"
-                  className="flex items-center justify-between h-12 px-2.5 bg-white border border-[#142A32]/18 rounded-[6px]"
+                  className="flex items-center justify-between h-12 px-2.5 bg-white border border-[#4A6572]/70 rounded-[6px]"
                 >
                   <button
                     type="button"
                     onClick={handleDecrement}
                     disabled={travellers <= MIN_TRAVELLERS}
                     aria-label="Decrease travellers"
-                    className="w-8 h-8 flex items-center justify-center rounded text-[#142A32] hover:bg-[#E9E2D5] disabled:opacity-35 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors focus-visible:outline-2 focus-visible:outline-[#B68C63] cursor-pointer"
+                    className="min-h-11 min-w-11 flex items-center justify-center rounded text-[#142A32] hover:bg-[#E9E2D5] disabled:opacity-50 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#142A32] cursor-pointer"
                   >
                     <Minus size={15} aria-hidden="true" />
                   </button>
@@ -175,7 +175,7 @@ export default function TravelSearch() {
                     onClick={handleIncrement}
                     disabled={travellers >= MAX_TRAVELLERS}
                     aria-label="Increase travellers"
-                    className="w-8 h-8 flex items-center justify-center rounded text-[#142A32] hover:bg-[#E9E2D5] disabled:opacity-35 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors focus-visible:outline-2 focus-visible:outline-[#B68C63] cursor-pointer"
+                    className="min-h-11 min-w-11 flex items-center justify-center rounded text-[#142A32] hover:bg-[#E9E2D5] disabled:opacity-50 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#142A32] cursor-pointer"
                   >
                     <Plus size={15} aria-hidden="true" />
                   </button>

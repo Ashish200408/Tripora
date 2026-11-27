@@ -75,7 +75,7 @@ export default function Testimonials() {
                   <div
                     role="img"
                     aria-label="5 out of 5 stars"
-                    className="flex items-center gap-1 text-[#B68C63]"
+                    className="flex items-center gap-1 text-[#76552F]"
                   >
                     {Array.from({ length: 5 }, (_, starIndex) => (
                       <Star

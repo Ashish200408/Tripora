@@ -97,7 +97,7 @@ export default function Newsletter() {
                     .filter(Boolean)
                     .join(' ')}
                   placeholder="you@example.com"
-                  className="w-full px-4 py-3 text-sm text-[#142A32] bg-[#F8F7F3] border border-[#E9E2D5]/40 rounded focus:outline-none focus:ring-2 focus:ring-[#B68C63] focus:border-[#B68C63] placeholder:text-[#4A6572]/70"
+                  className="w-full px-4 py-3 text-sm text-[#142A32] bg-[#F8F7F3] border border-[#4A6572]/70 rounded focus:ring-2 focus:ring-[#76552F] focus:border-[#76552F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#142A32] placeholder:text-[#4A6572]"
                 />
               </div>
               <Button

@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import { Link, type LinkProps } from 'react-router-dom'
 
 // =========================================================
 // Button – Tripora reusable button component
@@ -14,8 +15,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size
   children: ReactNode
   fullWidth?: boolean
-  as?: 'button' | 'a'
-  href?: string
+}
+
+interface ButtonLinkProps
+  extends Omit<LinkProps, 'children' | 'className' | 'to'> {
+  to: LinkProps['to']
+  variant?: Variant
+  size?: Size
+  children: ReactNode
+  fullWidth?: boolean
+  className?: string
 }
 
 const baseStyles =
@@ -25,11 +34,11 @@ const variantStyles: Record<Variant, string> = {
   primary:
     'bg-[#142A32] text-[#F8F7F3] border-[#142A32] hover:bg-[#1e3d4a] hover:border-[#1e3d4a] focus-visible:outline-[#142A32]',
   secondary:
-    'bg-[#B68C63] text-[#F8F7F3] border-[#B68C63] hover:bg-[#a07a53] hover:border-[#a07a53] focus-visible:outline-[#B68C63]',
+    'bg-[#B68C63] text-[#142A32] border-[#B68C63] hover:bg-[#c39b72] hover:border-[#c39b72] focus-visible:outline-[#B68C63]',
   ghost:
     'bg-transparent text-[#142A32] border-transparent hover:bg-[#142A32]/8 focus-visible:outline-[#142A32]',
   outline:
-    'bg-transparent text-[#142A32] border-[#142A32]/30 hover:border-[#142A32] hover:bg-[#142A32]/5 focus-visible:outline-[#142A32]',
+    'bg-transparent text-[#142A32] border-[#142A32]/65 hover:border-[#142A32] hover:bg-[#142A32]/5 focus-visible:outline-[#142A32]',
   'outline-light':
     'bg-transparent text-[#F8F7F3] border-[#E9E2D5]/55 hover:border-[#F8F7F3] hover:bg-[#F8F7F3]/12 focus-visible:outline-[#F8F7F3]',
 }
@@ -40,15 +49,13 @@ const sizeStyles: Record<Size, string> = {
   lg: 'px-8 py-4 text-base rounded-[4px]',
 }
 
-export default function Button({
+function getButtonClasses({
   variant = 'primary',
   size = 'md',
-  children,
   fullWidth = false,
   className = '',
-  ...rest
-}: ButtonProps) {
-  const classes = [
+}: Pick<ButtonProps, 'variant' | 'size' | 'fullWidth' | 'className'>) {
+  return [
     baseStyles,
     variantStyles[variant],
     sizeStyles[size],
@@ -57,10 +64,39 @@ export default function Button({
   ]
     .filter(Boolean)
     .join(' ')
+}
+
+export default function Button({
+  variant = 'primary',
+  size = 'md',
+  children,
+  fullWidth = false,
+  className = '',
+  ...rest
+}: ButtonProps) {
+  const classes = getButtonClasses({ variant, size, fullWidth, className })
 
   return (
     <button className={classes} {...rest}>
       {children}
     </button>
+  )
+}
+
+export function ButtonLink({
+  to,
+  variant = 'primary',
+  size = 'md',
+  children,
+  fullWidth = false,
+  className = '',
+  ...rest
+}: ButtonLinkProps) {
+  const classes = getButtonClasses({ variant, size, fullWidth, className })
+
+  return (
+    <Link to={to} className={classes} {...rest}>
+      {children}
+    </Link>
   )
 }

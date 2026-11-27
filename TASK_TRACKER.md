@@ -89,7 +89,7 @@ Production build passes (`✓ built in 1.17s`, zero TypeScript errors). Design s
 | 2.2 | Load Playfair Display and Inter from Google Fonts | 🔴 Critical | ✅ Completed |
 | 2.3 | Build reusable `Button` component (primary, secondary, ghost, outline variants) | 🔴 Critical | ✅ Completed |
 | 2.4 | Build `Navbar` component with desktop links and mobile hamburger menu | 🔴 Critical | ✅ Completed |
-| 2.5 | Build `Footer` component with links, social icons, and legal copy | 🔴 Critical | ✅ Completed |
+| 2.5 | Build `Footer` component with navigation to implemented routes | 🔴 Critical | ✅ Completed — unconfigured social and policy links are omitted |
 | 2.6 | Build `Layout` wrapper component (Navbar + main + Footer) | 🔴 Critical | ✅ Completed |
 | 2.7 | Configure React Router DOM with all planned routes in `App.tsx` | 🔴 Critical | ✅ Completed |
 | 2.8 | Create placeholder `Page` components for all routes | 🟠 High | ✅ Completed |
@@ -130,11 +130,11 @@ Phase 3A (Cinematic Homepage Hero), Phase 3B (Interactive Travel Search), Phase 
 
 **Status: 🔄 In Progress**
 
-Phase 4B implements the reusable `/destinations/:slug` detail page using the existing destination data, displays related packages, and uses the existing not-found page for unknown slugs. All six destination slugs and an invalid slug were browser-checked; `npm run build` passes. Dedicated weather and travel-tip fields are not present in the dataset and are not fabricated.
+Phase 4B implements the reusable `/destinations/:slug` detail page using the existing destination data, displays related packages, and uses the existing not-found page for unknown slugs. Phase 6B makes all six destination listing cards navigate to their matching detail route. Dedicated weather and travel-tip fields are not present in the dataset and are not fabricated.
 
 | # | Task | Priority | Status |
 |---|---|---|---|
-| 4.1 | Build Destinations listing page with destination cards | 🔴 Critical | 🔲 Not Started |
+| 4.1 | Build Destinations listing page with destination cards | 🔴 Critical | ✅ Completed — all six cards link to their matching detail routes |
 | 4.2 | Implement search by destination name | 🔴 Critical | 🔲 Not Started |
 | 4.3 | Implement filter by region | 🔴 Critical | 🔲 Not Started |
 | 4.4 | Implement filter by travel type | 🟠 High | 🔲 Not Started |
@@ -142,53 +142,123 @@ Phase 4B implements the reusable `/destinations/:slug` detail page using the exi
 | 4.6 | Build Destination Detail page with large hero image | 🔴 Critical | ✅ Completed (Phase 4B — data-driven page by slug) |
 | 4.7 | Add destination overview, weather, and travel tips sections | 🟠 High | 🔄 In Progress — overview and existing practical fields displayed; dedicated weather/tips data is unavailable |
 | 4.8 | Add related packages section on destination detail page | 🟡 Medium | ✅ Completed — filtered by `destinationId`, with an empty state |
-| 4.9 | Add booking enquiry button linking to enquiry flow | 🟠 High | ✅ Completed — links to existing `/contact` route |
+| 4.9 | Add booking enquiry button linking to enquiry flow | 🟠 High | ✅ Completed — destination detail CTA opens `/booking` with the destination preselected |
 | 4.10 | Verify all destination routes navigate correctly | 🔴 Critical | ✅ Completed — all six slugs and an unknown slug checked in browser |
 | 4.11 | Verify responsive layout on all breakpoints | 🔴 Critical | 🔲 Not Started |
 | 4.12 | Verify production build passes | 🔴 Critical | ✅ Completed — `npm run build` passed |
-| 4.13 | Update `README.md` | 🔴 Critical | ✅ Completed — documents `/destinations/:slug` |
+| 4.13 | Update `README.md` | 🔴 Critical | ✅ Completed — documents listing-card navigation and destination detail routes |
 
 ---
 
-### Phase 5 — Packages and Package Details
+### Phase 5 — Packages and Booking Enquiry
 
-**Status: 🔲 Not Started**
+**Status: ✅ Complete**
+
+Booking/contact integration, package listing, package detail pages, and the client-side price estimator are complete. The estimator multiplies the listed per-person price by the selected traveller count, constrained to each package's group-size limits. Its estimate is not a confirmed quotation or booking; taxes, additional fees, and availability are not verified. Final verification on 27 November 2026 covered all six routes, combined filters and sorting, reset/empty states, package-specific booking preselection, unknown-slug handling, responsive layouts, keyboard access, and booking/contact form regressions. Booking and contact submissions remain client-side demos; no enquiry or message is sent, no booking is made, and no details are stored.
 
 | # | Task | Priority | Status |
 |---|---|---|---|
-| 5.1 | Build Packages listing page with package cards and pricing | 🔴 Critical | 🔲 Not Started |
-| 5.2 | Implement filter by duration | 🟠 High | 🔲 Not Started |
-| 5.3 | Implement filter by destination | 🟠 High | 🔲 Not Started |
-| 5.4 | Implement filter by price range | 🟠 High | 🔲 Not Started |
-| 5.5 | Implement sort by popularity, price, and duration | 🟡 Medium | 🔲 Not Started |
-| 5.6 | Build Package Detail page with full itinerary | 🔴 Critical | 🔲 Not Started |
-| 5.7 | Add included and excluded items section | 🟠 High | 🔲 Not Started |
-| 5.8 | Build price breakdown and estimation tool | 🔴 Critical | 🔲 Not Started |
-| 5.9 | Build booking enquiry form with React Hook Form + Zod validation | 🔴 Critical | 🔲 Not Started |
-| 5.10 | Implement form confirmation state after submission (frontend demo only) | 🔴 Critical | 🔲 Not Started |
-| 5.11 | Verify all package routes navigate correctly | 🔴 Critical | 🔲 Not Started |
-| 5.12 | Verify responsive layout on all breakpoints | 🔴 Critical | 🔲 Not Started |
-| 5.13 | Verify production build passes | 🔴 Critical | 🔲 Not Started |
-| 5.14 | Update `README.md` | 🔴 Critical | 🔲 Not Started |
+| 5.1 | Build Packages listing page with package cards and pricing | 🔴 Critical | ✅ Completed |
+| 5.2 | Implement filter by duration | 🟠 High | ✅ Completed |
+| 5.3 | Implement filter by destination | 🟠 High | ✅ Completed |
+| 5.4 | Implement filter by price range | 🟠 High | ✅ Completed |
+| 5.5 | Implement sort by popularity, price, and duration | 🟡 Medium | ✅ Completed |
+| 5.6 | Build Package Detail page with full itinerary | 🔴 Critical | ✅ Completed — slug-based route and data-driven detail page |
+| 5.7 | Add included and excluded items section | 🟠 High | ✅ Completed — separately labeled and styled |
+| 5.8 | Build price breakdown and estimation tool | 🔴 Critical | ✅ Completed — per-person estimate × selected travellers, bounded by group size |
+| 5.9 | Build booking enquiry form with React Hook Form + Zod validation | 🔴 Critical | ✅ Completed (Phase 5B) |
+| 5.10 | Implement form confirmation state after submission (frontend demo only) | 🔴 Critical | ✅ Completed (Phase 5C — in-memory summary and edit flow) |
+| 5.11 | Verify all package routes navigate correctly | 🔴 Critical | ✅ Completed — verified six cards/detail routes, combined filters/sorts, reset/empty states, booking preselection, return navigation, unknown-slug layout, and per-package estimate/group limits |
+| 5.12 | Verify responsive layout on all breakpoints | 🔴 Critical | ✅ Completed — listing and all six detail pages checked at 390, 768, 1024, and 1440px; no horizontal overflow or clipped text; Navbar/Footer and mobile-menu keyboard access verified |
+| 5.13 | Verify production build passes | 🔴 Critical | ✅ Completed (package estimator build passed) |
+| 5.14 | Update `README.md` | 🔴 Critical | ✅ Completed (updated through package estimator) |
 
 ---
 
 ### Phase 6 — Experiences, About and Contact
 
-**Status: 🔲 Not Started**
+**Status: 🔄 In Progress**
+
+Phase 5D implements the existing Contact page form with React Hook Form and a reusable Zod schema, accessible inline validation, and an in-memory demo confirmation with summary, edit, and homepage actions. Phase 5E verified empty submission, invalid email, message-length validation, valid submission, value preservation, route actions, and mobile/tablet/desktop layouts. No message is sent or stored.
 
 | # | Task | Priority | Status |
 |---|---|---|---|
 | 6.1 | Build About page with Tripora brand story | 🟠 High | 🔲 Not Started |
 | 6.2 | Add team section to About page | 🟡 Medium | 🔲 Not Started |
 | 6.3 | Add values and mission statement section to About page | 🟠 High | 🔲 Not Started |
-| 6.4 | Build Contact page with validated contact form | 🔴 Critical | 🔲 Not Started |
-| 6.5 | Implement form confirmation state after submission (frontend demo only) | 🔴 Critical | 🔲 Not Started |
-| 6.6 | Add office details and social links to Contact page | 🟡 Medium | 🔲 Not Started |
+| 6.4 | Build Contact page with validated contact form | 🔴 Critical | ✅ Completed (Phase 5D) |
+| 6.5 | Implement form confirmation state after submission (frontend demo only) | 🔴 Critical | ✅ Completed (Phase 5D — in-memory summary and edit flow) |
+| 6.6 | Add verified office details and social links to Contact page, when supplied | 🟡 Medium | 🔲 Not Started — no unverified contact details or social profiles are shown |
 | 6.7 | Build Experiences or curated travel themes section / page | 🟡 Medium | 🔲 Not Started |
-| 6.8 | Verify responsive layout on all breakpoints | 🔴 Critical | 🔲 Not Started |
-| 6.9 | Verify production build passes | 🔴 Critical | 🔲 Not Started |
-| 6.10 | Update `README.md` | 🔴 Critical | 🔲 Not Started |
+| 6.8 | Verify responsive layout on all breakpoints | 🔴 Critical | ✅ Completed — mobile, tablet, and desktop checked in Phase 5E |
+| 6.9 | Verify production build passes | 🔴 Critical | ✅ Completed (Phase 5E production build passed) |
+| 6.10 | Update `README.md` | 🔴 Critical | ✅ Completed (updated through Phase 5E) |
+
+---
+
+### Phase 6B — Functional Consistency and Navigation
+
+**Status: ✅ Complete**
+
+Homepage search parameters are safely validated on `/packages`: known destination slugs preselect the destination filter, valid non-past ISO dates and traveller counts from 1–12 are retained as visible planning context, and invalid values are ignored. The context explicitly does not indicate package availability. Changing the destination filter preserves date/traveller context; reset clears the context and all package filters.
+
+All six destination cards now link to their matching detail routes; unknown destination slugs continue to use the shared not-found page. Destination detail enquiry CTAs open the booking demo with the destination preselected. Footer links point only to existing routes; placeholder social, FAQ, insurance, cancellation, and privacy links have been removed. Unverified phone, email, and office claims have also been removed from the Contact page.
+
+Browser verification covered homepage search, combined filters and sorting, destination changes, reset, invalid query values, all six destination cards, unknown slugs, booking preselection, footer/navbar links, and the mobile menu. Package listing widths 390, 768, 1024, and 1440px and destination/contact layouts at 390 and 1440px showed no horizontal overflow. `npm run build`, `npm run lint`, and `git diff --check` completed; the Footer render-time `Date` warning was resolved in Phase 6C. The large-chunk advisory was resolved in Phase 6D.
+
+---
+
+### Phase 6C — Technical Cleanup and Configuration
+
+**Status: ✅ Complete**
+
+Verified the installed Vite and React plugin engine requirements (`^20.19.0 || >=22.12.0`); Node.js 24.x is recommended. Moved the Footer's copyright year calculation out of component render, added `.vercel/` to `.gitignore`, and corrected README descriptions for current routes, demo limitations, deployment fallback, and runtime requirements. No dependencies or application configuration were changed.
+
+`npm run build`, `npm run lint`, and `git diff --check` passed for Phase 6C. The large-chunk advisory noted at that time was subsequently resolved in Phase 6D.
+
+---
+
+### Phase 6D — Performance Optimization
+
+**Status: ✅ Complete**
+
+All page routes except the lightweight catch-all 404 are loaded with React `lazy` and per-route Suspense boundaries. The shared Layout remains mounted during loading, with a branded, accessible fallback. No routing, form, or data dependencies were added or removed.
+
+The production build's main JavaScript entry decreased from **645.96 kB (196.24 kB gzip)** to **225.23 kB (70.41 kB gzip)**, a **65.1% minified** and **64.1% gzip** reduction. The homepage's separate route chunk is 165.09 kB (53.47 kB gzip); the React Hook Form/Zod shared chunk is 123.23 kB (37.34 kB gzip) and is requested only by booking/contact routes. Baseline module analysis identified React DOM and React Router as shared runtime weight, with Motion and form/validation modules among the largest route-specific contributors. The optimized build no longer emits the >500 kB chunk advisory.
+
+Unsplash images use responsive width candidates and `sizes`; below-the-fold images remain lazy, hero images are eager/high priority, existing aspect ratios reserve layout space, and image failures display a branded fallback. Browser checks covered direct loads of every route and the 404, booking preselection and form confirmation/edit, contact validation/confirmation/edit, combined package filters and all sorting modes, reset, all six package estimators, responsive widths 390/768/1024/1440, and a forced image failure fallback. No application console errors or horizontal overflow were observed. Motion logged its reduced-motion informational warning in the test browser; blocked image requests during the deliberate fallback test also produced expected network errors.
+
+`npm run build`, `npm run lint`, and `git diff --check` passed. No dependency manifest changes were made.
+
+---
+
+### Phase 6E — SEO, Accessibility and Visual Polish
+
+**Status: ✅ Complete**
+
+Added unique route titles and descriptions for all application routes, including dynamic destination and package pages. Detail-page Open Graph images use existing data. The static HTML now has suitable fallback metadata. No canonical URL or `og:url` is emitted because the production domain is not configured; route metadata is client-rendered, so prerendering or server rendering may be needed for reliable indexing by crawlers that do not execute JavaScript.
+
+Accessibility refinements include a skip-to-main link, global visible focus styles, accessible mobile navigation with Escape handling, focus containment and restoration, inert background content while open, and reduced-motion CSS. Booking and contact fields have associated labels, `aria-invalid`, and linked error announcements. Updated gold/text and form-control contrast; removed or qualified copy that implied unverified services and labeled sample ratings.
+
+Headless Chrome verification covered unique metadata on the home, listing, destination/package detail, Experiences, About, Contact, Booking, and 404 routes; all six destination and package slugs; dynamic Open Graph images; no missing image alt attributes on tested detail/listing pages; skip-link activation; mobile menu keyboard behavior; booking/contact field labels and invalid-state announcements; package filter and estimator keyboard use; booking query preselection; reduced-motion behavior; and 390, 768, 1024, and 1440px viewport checks. No horizontal overflow or browser JavaScript errors were observed. Canonical metadata remains intentionally absent until a real domain is supplied.
+
+`npm run build`, `npm run lint`, and `git diff --check` passed after the final changes. No dependencies were added or removed.
+
+---
+
+### Phase 6F — Final Regression Testing and Local Release Preparation
+
+**Status: ✅ Complete**
+
+Verified the production build through Vite Preview. Direct navigation and browser refresh succeeded on 20 routes: Home, Destinations listing and all six destination details, Packages listing and all six package details, Experiences, About, Contact, Booking, and the unknown-route 404. Responsive document overflow checks passed for all 20 routes at 390, 768, 1024, and 1440px.
+
+Functional regression checks passed for each package duration/destination/price filter, combined filters, all sort modes, reset and empty states, valid/invalid homepage search parameters, and package search context. Destination and package booking links preselected the correct fields. Booking and contact forms displayed linked validation errors, accepted valid examples, showed truthful in-memory demo summaries, and preserved entered values when edited. All six package estimators calculated minimum and maximum totals correctly and clamped an over-maximum input. Navbar and Footer links, the mobile menu's focus containment/Escape/restore behavior, skip-link focus, form labels/error descriptions, reduced-motion styling, and an intentionally failed image request's accessible fallback were checked.
+
+The route sweep produced no application JavaScript errors. The reduced-motion run can log Motion's informational warning; the deliberate image-fallback test causes expected image request errors. No external service, email, booking, or persistence claims were observed.
+
+`npm run build` passed with TypeScript checks and no large-chunk advisory. `npm run lint` and `git diff --check` passed. The final main JavaScript entry is **227.27 kB minified (71.02 kB gzip)**. Generated `dist/` assets are ignored by Git. No Vercel configuration, staging, commit, push, or deployment was performed.
+
+The local release is ready for an explicitly approved Git checkpoint and the remaining hosting-specific SPA fallback/deployment steps. The worktree remains uncommitted.
 
 ---
 
@@ -241,7 +311,7 @@ Phase 4B implements the reusable `/destinations/:slug` detail page using the exi
 
 | # | Task | Priority | Status |
 |---|---|---|---|
-| 9.1 | Confirm `.gitignore` excludes `node_modules`, `dist`, and `.env` files | 🔴 Critical | 🔲 Not Started |
+| 9.1 | Confirm `.gitignore` excludes `node_modules`, `dist`, `.env` files, and `.vercel/` | 🔴 Critical | ✅ Completed — ignore rules verified |
 | 9.2 | Commit all completed work with a meaningful commit message | 🔴 Critical | 🔲 Not Started |
 | 9.3 | Push final commit to GitHub `main` branch | 🔴 Critical | 🔲 Not Started |
 | 9.4 | Verify repository is clean with no uncommitted changes | 🔴 Critical | 🔲 Not Started |
@@ -282,23 +352,23 @@ Run after completing each phase. Do not mark a phase complete until every applic
 
 | Check | Tool / Method | Status |
 |---|---|---|
-| Production build succeeds | `npm run build` | 🔲 Not Started |
-| Zero TypeScript errors | `npx tsc --noEmit` | 🔲 Not Started |
-| Zero lint errors | `npm run lint` | 🔲 Not Started |
-| Browser console is clean (no errors, no warnings) | Browser DevTools | 🔲 Not Started |
-| All navigation links work | Manual browser test | 🔲 Not Started |
-| All interactive elements function correctly | Manual browser test | 🔲 Not Started |
-| No horizontal overflow on any page | Browser DevTools | 🔲 Not Started |
+| Production build succeeds | `npm run build` | ✅ Verified — Phase 6F; no chunk-size advisory |
+| Zero TypeScript errors | `tsc -b` via `npm run build` | ✅ Verified — Phase 6F |
+| Zero lint errors | `npm run lint` | ✅ Verified — Phase 6F |
+| Browser console is clean (no errors, no warnings) | Browser DevTools | ✅ No application JavaScript errors; informational reduced-motion warning and forced image-fallback request errors are expected |
+| Implemented Navbar and Footer navigation works | Production browser test | ✅ Verified — Navbar route and Footer booking navigation; no placeholder `href="#"` links |
+| Implemented core filters, forms, search, estimator, and menu interactions | Production browser test | ✅ Verified — Phase 6F; wishlist remains unimplemented |
+| No horizontal overflow on any tested route | Production browser test | ✅ Verified — 20 routes at 390, 768, 1024, and 1440px |
 | No overlapping elements | Visual inspection | 🔲 Not Started |
-| All images have descriptive alt text | Code review | 🔲 Not Started |
-| Forms validate input and reject invalid data | Manual form test | 🔲 Not Started |
-| Forms display confirmation state after submission | Manual form test | 🔲 Not Started |
-| Mobile responsiveness verified (360px–430px) | DevTools device mode | 🔲 Not Started |
-| Tablet responsiveness verified (768px–1024px) | DevTools device mode | 🔲 Not Started |
-| Desktop responsiveness verified (1280px+) | Browser window resize | 🔲 Not Started |
-| Mobile navigation menu opens and closes | Manual mobile test | 🔲 Not Started |
+| All rendered content images have alt text | Production browser test | ✅ Verified — no missing image alt attributes on tested routes |
+| Forms validate input and reject invalid data | Production browser test | ✅ Verified — empty submissions and invalid email |
+| Forms display truthful confirmation state after submission | Production browser test | ✅ Verified — in-memory demo summary and edit flow |
+| Mobile responsiveness verified (360px–430px) | Production browser viewport | ✅ Verified at 390px |
+| Tablet responsiveness verified (768px–1024px) | Production browser viewport | ✅ Verified at 768px and 1024px |
+| Desktop responsiveness verified (1280px+) | Production browser viewport | ✅ Verified at 1440px |
+| Mobile navigation menu opens and closes | Production browser keyboard test | ✅ Verified — focus containment, Escape close, and focus restoration |
 | Wishlist persists on page refresh (localStorage) | Manual browser test | 🔲 Not Started |
-| Price estimation calculates correctly | Manual input test | 🔲 Not Started |
+| Price estimation calculates and enforces package group bounds | Production browser test | ✅ Verified — all six packages at min/max and over-maximum input |
 
 ---
 
@@ -322,9 +392,9 @@ Complete all items before going live.
 
 | Task | Status |
 |---|---|
-| `npm run build` completes successfully with zero errors | 🔲 Not Started |
-| `dist/` folder generated and not committed to Git | 🔲 Not Started |
-| `.gitignore` excludes `node_modules`, `dist`, `.env` | ✅ Verified |
+| `npm run build` completes successfully with zero errors | ✅ Verified — Phase 6F |
+| `dist/` folder generated and not committed to Git | ✅ Verified — Phase 6F production build; generated and Git-ignored |
+| `.gitignore` excludes `node_modules`, `dist`, `.env`, logs, caches, IDE artifacts, and `.vercel/` | ✅ Verified |
 | All changes committed to `main` branch | 🔲 Not Started |
 | Repository pushed to GitHub | 🔲 Not Started |
 | `_redirects` file added to `public/` for SPA routing (Netlify) | 🔲 Not Started |
@@ -361,4 +431,4 @@ Confirm each item is working immediately before the client demonstration.
 
 ---
 
-*This tracker must be updated alongside every completed development task. Last updated: Phase 4B — Dynamic destination detail page implemented, browser-checked, and build passed.*
+*This tracker must be updated alongside every completed development task. Last updated: Phase 6F — Final regression testing and local release preparation.*

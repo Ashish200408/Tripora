@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, MapPin } from 'lucide-react'
 import Container from '../ui/Container'
-import Button from '../ui/Button'
+import { ButtonLink } from '../ui/Button'
 import { destinations } from '../../data/destinations'
+import { getResponsiveImageSrcSet } from '../../utils/responsiveImage'
 
 // =========================================================
 // FeaturedDestinations – Editorial destination showcase
@@ -26,7 +27,7 @@ export default function FeaturedDestinations() {
         {/* Editorial Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 lg:mb-14">
           <div className="max-w-2xl">
-            <p className="text-xs sm:text-sm tracking-[0.24em] uppercase text-[#B68C63] font-semibold mb-3">
+            <p className="text-xs sm:text-sm tracking-[0.24em] uppercase text-[#76552F] font-semibold mb-3">
               Explore the World
             </p>
             <h2
@@ -36,21 +37,25 @@ export default function FeaturedDestinations() {
               Destinations Worth Discovering
             </h2>
             <p className="text-base sm:text-lg text-[#4A6572] leading-relaxed">
-              Discover extraordinary places and journeys curated for the way you love to travel.
+              Explore sample destinations and illustrative travel concepts from
+              around the world.
             </p>
           </div>
 
           <div className="shrink-0">
-            <Link to="/destinations" className="inline-flex">
-              <Button variant="outline" size="md" className="group">
-                View All Destinations
-                <ArrowRight
-                  size={16}
-                  className="transition-transform duration-200 group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </Button>
-            </Link>
+            <ButtonLink
+              to="/destinations"
+              variant="outline"
+              size="md"
+              className="group"
+            >
+              View All Destinations
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-200 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </ButtonLink>
           </div>
         </div>
 
@@ -66,7 +71,7 @@ export default function FeaturedDestinations() {
               >
                 <Link
                   to={`/destinations/${dest.slug}`}
-                  className="flex flex-col flex-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B68C63] rounded-xl"
+                  className="flex flex-col flex-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#76552F] rounded-xl"
                   aria-label={`Explore ${dest.name}, ${dest.country}`}
                 >
                   {/* Destination Image */}
@@ -74,10 +79,13 @@ export default function FeaturedDestinations() {
                     {!hasFailed ? (
                       <img
                         src={dest.imageUrl}
+                        srcSet={getResponsiveImageSrcSet(dest.imageUrl)}
+                        sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
                         alt={`${dest.name}, ${dest.country} — ${dest.tagline}`}
                         onError={() => handleImageError(dest.id)}
                         className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                         loading="lazy"
+                        decoding="async"
                       />
                     ) : (
                       <div
@@ -100,14 +108,14 @@ export default function FeaturedDestinations() {
 
                   {/* Card Body */}
                   <div className="p-6 flex flex-col flex-1">
-                    <div className="flex items-center gap-1.5 text-xs tracking-widest uppercase text-[#B68C63] font-semibold mb-2">
+                    <div className="flex items-center gap-1.5 text-xs tracking-widest uppercase text-[#76552F] font-semibold mb-2">
                       <MapPin size={13} aria-hidden="true" />
                       <span>
                         {dest.country} · {dest.region}
                       </span>
                     </div>
 
-                    <h3 className="font-heading text-2xl text-[#142A32] mb-2.5 group-hover:text-[#B68C63] transition-colors duration-200">
+                    <h3 className="font-heading text-2xl text-[#142A32] mb-2.5 group-hover:text-[#76552F] transition-colors duration-200">
                       {dest.name}
                     </h3>
 
@@ -116,7 +124,7 @@ export default function FeaturedDestinations() {
                     </p>
 
                     <div className="mt-auto pt-4 border-t border-[#142A32]/8 flex items-center justify-between">
-                      <span className="inline-flex items-center gap-2 text-sm font-medium text-[#142A32] group-hover:text-[#B68C63] transition-colors duration-200">
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-[#142A32] group-hover:text-[#76552F] transition-colors duration-200">
                         Explore Destination
                         <ArrowRight
                           size={15}

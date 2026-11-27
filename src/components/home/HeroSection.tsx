@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 import Container from '../ui/Container'
-import Button from '../ui/Button'
+import { ButtonLink } from '../ui/Button'
+import { getResponsiveImageSrcSet } from '../../utils/responsiveImage'
 
 // =========================================================
 // HeroSection – Full-width cinematic homepage hero
@@ -36,7 +36,9 @@ export default function HeroSection() {
       {!imageFailed ? (
         <img
           src={HERO_IMAGE_URL}
-          alt="Sunlit alpine lake surrounded by dramatic mountain peaks at dawn, representing Tripora curated journeys"
+          srcSet={getResponsiveImageSrcSet(HERO_IMAGE_URL)}
+          sizes="100vw"
+          alt="Sunlit alpine lake surrounded by dramatic mountain peaks at dawn"
           onError={() => setImageFailed(true)}
           className="absolute inset-0 w-full h-full object-cover object-center scale-[1.01]"
           loading="eager"
@@ -90,7 +92,8 @@ export default function HeroSection() {
             {...fadeUp(0.25)}
             className="text-base sm:text-lg lg:text-xl text-[#F8F7F3]/95 sm:text-[#E9E2D5] font-normal leading-relaxed max-w-lg mb-8 sm:mb-10 drop-shadow-xs"
           >
-            We craft premium, personalised journeys to the world&apos;s most extraordinary destinations.
+            Explore sample destinations, illustrative itineraries, and
+            frontend-only enquiry forms in this Tripora travel concept demo.
           </motion.p>
 
           {/* Actions / CTAs */}
@@ -98,32 +101,30 @@ export default function HeroSection() {
             {...fadeUp(0.35)}
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-1"
           >
-            <Link to="/destinations" className="inline-flex">
-              <Button
-                variant="secondary"
-                size="lg"
-                fullWidth
-                className="group shadow-md hover:-translate-y-0.5 hover:shadow-lg sm:w-auto"
-              >
-                Explore Destinations
-                <ArrowRight
-                  size={17}
-                  className="transition-transform duration-200 group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </Button>
-            </Link>
+            <ButtonLink
+              to="/destinations"
+              variant="secondary"
+              size="lg"
+              fullWidth
+              className="group shadow-md hover:-translate-y-0.5 hover:shadow-lg sm:w-auto"
+            >
+              Explore Destinations
+              <ArrowRight
+                size={17}
+                className="transition-transform duration-200 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </ButtonLink>
 
-            <Link to="/packages" className="inline-flex">
-              <Button
-                variant="outline-light"
-                size="lg"
-                fullWidth
-                className="hover:-translate-y-0.5 sm:w-auto"
-              >
-                Discover Packages
-              </Button>
-            </Link>
+            <ButtonLink
+              to="/packages"
+              variant="outline-light"
+              size="lg"
+              fullWidth
+              className="hover:-translate-y-0.5 sm:w-auto"
+            >
+              Discover Packages
+            </ButtonLink>
           </motion.div>
         </div>
       </Container>

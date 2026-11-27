@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import Container from '../ui/Container'
-import Button from '../ui/Button'
+import { ButtonLink } from '../ui/Button'
 
 // =========================================================
 // Navbar – Tripora site navigation
@@ -21,6 +21,10 @@ const navLinks = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const mobileNavRef = useRef<HTMLDivElement>(null)
+  const wasMenuOpen = useRef(false)
 
   // Add background on scroll
   useEffect(() => {
@@ -29,7 +33,76 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close menu on resize to desktop
+  // Keep the mobile drawer keyboard-contained while it is open.
+  useEffect(() => {
+    if (!menuOpen) {
+      if (wasMenuOpen.current && window.innerWidth < 1024) {
+        menuButtonRef.current?.focus()
+      }
+      wasMenuOpen.current = false
+      return
+    }
+
+    wasMenuOpen.current = true
+    closeButtonRef.current?.focus()
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const backgroundElements = Array.from(
+      document.querySelectorAll<HTMLElement>('#root main, #root footer'),
+    )
+    const previousInertStates = backgroundElements.map((element) => element.inert)
+    backgroundElements.forEach((element) => {
+      element.inert = true
+    })
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        setMenuOpen(false)
+        return
+      }
+
+      if (event.key !== 'Tab' || !mobileNavRef.current) return
+
+      const focusableElements = Array.from(
+        mobileNavRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((element) => element.tabIndex >= 0)
+      const firstElement = focusableElements[0]
+      const lastElement = focusableElements[focusableElements.length - 1]
+      const focusIsInside = mobileNavRef.current.contains(document.activeElement)
+
+      if (!firstElement || !lastElement) {
+        event.preventDefault()
+      } else if (!focusIsInside) {
+        event.preventDefault()
+        if (event.shiftKey) {
+          lastElement.focus()
+        } else {
+          firstElement.focus()
+        }
+      } else if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault()
+        lastElement.focus()
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault()
+        firstElement.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = previousOverflow
+      backgroundElements.forEach((element, index) => {
+        element.inert = previousInertStates[index]
+      })
+    }
+  }, [menuOpen])
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) setMenuOpen(false)
@@ -38,15 +111,9 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
-
   const activeLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive
-      ? 'text-[#B68C63] font-medium'
+      ? 'text-[#76552F] font-medium'
       : 'text-[#142A32]/70 hover:text-[#142A32] transition-colors duration-200'
 
   return (
@@ -61,7 +128,6 @@ export default function Navbar() {
         <Container>
           <nav
             className="flex items-center justify-between h-16 lg:h-18"
-            role="navigation"
             aria-label="Main navigation"
           >
             {/* Logo */}
@@ -96,16 +162,15 @@ export default function Navbar() {
 
             {/* Desktop CTA */}
             <div className="hidden lg:block">
-              <Link to="/packages">
-                <Button variant="primary" size="sm">
-                  Explore Trips
-                </Button>
-              </Link>
+              <ButtonLink to="/packages" variant="primary" size="sm">
+                Explore Trips
+              </ButtonLink>
             </div>
 
             {/* Mobile menu toggle */}
             <button
-              className="lg:hidden p-2 rounded text-[#142A32] hover:bg-[#142A32]/8 transition-colors"
+              ref={menuButtonRef}
+              className="lg:hidden min-h-11 min-w-11 rounded text-[#142A32] hover:bg-[#142A32]/8 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#142A32]"
               onClick={() => setMenuOpen((prev) => !prev)}
               aria-expanded={menuOpen}
               aria-controls="mobile-nav"
@@ -129,11 +194,14 @@ export default function Navbar() {
       {/* Mobile navigation panel */}
       <div
         id="mobile-nav"
+        ref={mobileNavRef}
         className={`fixed top-0 right-0 h-full w-72 max-w-[85vw] z-50 bg-[#F8F7F3] shadow-xl transform transition-transform duration-300 ease-in-out lg:hidden ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         role="dialog"
-        aria-modal="true"
+        aria-modal={menuOpen}
+        aria-hidden={!menuOpen}
+        inert={!menuOpen}
         aria-label="Mobile navigation"
       >
         {/* Mobile panel header */}
@@ -145,7 +213,8 @@ export default function Navbar() {
             Tripora
           </span>
           <button
-            className="p-2 rounded text-[#142A32]/60 hover:text-[#142A32] hover:bg-[#142A32]/8 transition-colors"
+            ref={closeButtonRef}
+            className="min-h-11 min-w-11 rounded text-[#142A32]/80 hover:text-[#142A32] hover:bg-[#142A32]/8 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#142A32]"
             onClick={() => setMenuOpen(false)}
             aria-label="Close navigation menu"
           >
@@ -154,7 +223,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile links */}
-        <nav className="px-6 py-6">
+        <nav className="px-6 py-6" aria-label="Mobile navigation links">
           <ul className="flex flex-col gap-1" role="list">
             {navLinks.map(({ label, to }) => (
               <li key={to}>
@@ -164,7 +233,7 @@ export default function Navbar() {
                   className={({ isActive }) =>
                     `block px-3 py-3 rounded text-sm tracking-wide transition-colors ${
                       isActive
-                        ? 'text-[#B68C63] bg-[#B68C63]/8 font-medium'
+                        ? 'text-[#76552F] bg-[#B68C63]/8 font-medium'
                         : 'text-[#142A32]/70 hover:text-[#142A32] hover:bg-[#142A32]/5'
                     }`
                   }
@@ -177,11 +246,15 @@ export default function Navbar() {
           </ul>
 
           <div className="mt-6 pt-6 border-t border-[#142A32]/10">
-            <Link to="/packages" onClick={() => setMenuOpen(false)}>
-              <Button variant="primary" size="md" fullWidth>
-                Explore Trips
-              </Button>
-            </Link>
+            <ButtonLink
+              to="/packages"
+              onClick={() => setMenuOpen(false)}
+              variant="primary"
+              size="md"
+              fullWidth
+            >
+              Explore Trips
+            </ButtonLink>
           </div>
         </nav>
       </div>

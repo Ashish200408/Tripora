@@ -1,10 +1,12 @@
 import { Link, useParams } from 'react-router-dom'
 import { ArrowRight, Clock, MapPin, Star } from 'lucide-react'
 import Container from '../components/ui/Container'
-import Button from '../components/ui/Button'
+import { ButtonLink } from '../components/ui/Button'
 import { getDestinationBySlug } from '../data/destinations'
 import { packages } from '../data/packages'
 import NotFoundPage from './NotFoundPage'
+import ImageWithFallback from '../components/ui/ImageWithFallback'
+import PageMetadata from '../components/seo/PageMetadata'
 
 export default function DestinationDetailPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -18,14 +20,24 @@ export default function DestinationDetailPage() {
 
   return (
     <>
+      <PageMetadata
+        title={`${destination.name}, ${destination.country} | Tripora Destinations`}
+        description={`Explore ${destination.name}, ${destination.country}: ${destination.tagline}. Browse destination highlights, practical information, and sample itineraries.`}
+        image={destination.imageUrl}
+        imageAlt={`${destination.name}, ${destination.country}`}
+      />
       <section
         aria-labelledby="destination-heading"
         className="relative flex min-h-[52vh] items-end overflow-hidden bg-[#142A32] sm:min-h-[60vh]"
       >
-        <img
+        <ImageWithFallback
           src={destination.imageUrl}
           alt={`${destination.name}, ${destination.country} — ${destination.tagline}`}
+          fallbackLabel={destination.name}
           className="absolute inset-0 h-full w-full object-cover object-center"
+          loading="eager"
+          sizes="100vw"
+          fetchPriority="high"
         />
         <div
           aria-hidden="true"
@@ -63,7 +75,7 @@ export default function DestinationDetailPage() {
           <div className="mt-6 flex items-center gap-2 text-[#F8F7F3]">
             <span
               role="img"
-              aria-label={`${destination.rating} out of 5 stars`}
+              aria-label={`Illustrative sample rating: ${destination.rating} out of 5 stars`}
               className="inline-flex items-center gap-1 text-[#B68C63]"
             >
               {Array.from({ length: 5 }, (_, index) => (
@@ -76,8 +88,8 @@ export default function DestinationDetailPage() {
               ))}
             </span>
             <span className="text-sm">
-              {destination.rating} · {destination.reviewCount.toLocaleString()}{' '}
-              reviews
+              Sample rating: {destination.rating} ·{' '}
+              {destination.reviewCount.toLocaleString()} sample reviews
             </span>
           </div>
         </Container>
@@ -87,7 +99,7 @@ export default function DestinationDetailPage() {
         <Container>
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_0.8fr] lg:gap-16">
             <div className="max-w-3xl">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#B68C63]">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#76552F]">
                 Discover {destination.name}
               </p>
               <h2 className="mb-5 font-heading text-3xl text-[#142A32]! sm:text-4xl">
@@ -171,7 +183,7 @@ export default function DestinationDetailPage() {
       >
         <Container>
           <div className="mb-10 max-w-2xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#B68C63]">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#76552F]">
               Worth discovering
             </p>
             <h2
@@ -209,7 +221,7 @@ export default function DestinationDetailPage() {
         <Container>
           <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#B68C63]">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#76552F]">
                 Curated for you
               </p>
               <h2
@@ -219,12 +231,10 @@ export default function DestinationDetailPage() {
                 Journeys in {destination.name}
               </h2>
             </div>
-            <Link to="/packages" className="inline-flex">
-              <Button variant="outline" size="md">
-                Browse all packages
-                <ArrowRight size={16} aria-hidden="true" />
-              </Button>
-            </Link>
+            <ButtonLink to="/packages" variant="outline" size="md">
+              Browse all packages
+              <ArrowRight size={16} aria-hidden="true" />
+            </ButtonLink>
           </div>
 
           {relatedPackages.length > 0 ? (
@@ -234,11 +244,13 @@ export default function DestinationDetailPage() {
                   key={pkg.id}
                   className="flex flex-col overflow-hidden rounded-xl border border-[#142A32]/10 bg-white shadow-[0_2px_10px_rgba(20,42,50,0.05)]"
                 >
-                  <img
+                  <ImageWithFallback
                     src={pkg.imageUrl}
                     alt={`${pkg.title} in ${pkg.destinationName}`}
+                    fallbackLabel={pkg.title}
                     className="aspect-[16/10] w-full object-cover"
                     loading="lazy"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
                   />
                   <div className="flex flex-1 flex-col p-5">
                     <h3 className="mb-3 font-heading text-xl text-[#142A32]!">
@@ -252,15 +264,15 @@ export default function DestinationDetailPage() {
                       <span className="inline-flex items-center gap-1.5">
                         <Star
                           size={15}
-                          className="fill-[#B68C63] text-[#B68C63]"
+                          className="fill-[#76552F] text-[#76552F]"
                           aria-hidden="true"
                         />
-                        {pkg.rating}
+                        Sample rating: {pkg.rating}
                       </span>
                     </div>
                     <Link
                       to={`/booking?package=${pkg.slug}`}
-                      className="mt-auto inline-flex items-center gap-2 rounded text-sm font-medium text-[#142A32] underline-offset-4 hover:text-[#B68C63] hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B68C63]"
+                      className="mt-auto inline-flex items-center gap-2 rounded text-sm font-medium text-[#142A32] underline-offset-4 hover:text-[#76552F] hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#76552F]"
                     >
                       Enquire about this journey
                       <ArrowRight size={15} aria-hidden="true" />
@@ -271,8 +283,7 @@ export default function DestinationDetailPage() {
             </div>
           ) : (
             <p className="rounded-lg border border-[#142A32]/10 bg-white p-6 text-[#4A6572]!">
-              There are no curated packages for {destination.name} yet. Contact
-              our travel team to discuss a journey.
+              There are no sample packages for {destination.name} yet.
             </p>
           )}
         </Container>
@@ -283,18 +294,22 @@ export default function DestinationDetailPage() {
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="max-w-2xl">
               <h2 className="mb-3 font-heading text-2xl text-[#F8F7F3]! sm:text-3xl">
-                Let’s plan your {destination.name} journey.
+                Explore a journey to {destination.name}.
               </h2>
               <p className="text-sm leading-relaxed text-[#E9E2D5]! sm:text-base">
-                Speak with our team about planning a trip to {destination.name}.
+                Open the demo booking enquiry form with this destination
+                selected.
               </p>
             </div>
-            <Link to="/contact" className="inline-flex shrink-0">
-              <Button variant="outline-light" size="md">
-                Make an enquiry
-                <ArrowRight size={16} aria-hidden="true" />
-              </Button>
-            </Link>
+            <ButtonLink
+              to={`/booking?destination=${encodeURIComponent(destination.slug)}`}
+              className="shrink-0"
+              variant="outline-light"
+              size="md"
+            >
+              Prepare an enquiry
+              <ArrowRight size={16} aria-hidden="true" />
+            </ButtonLink>
           </div>
         </Container>
       </section>
